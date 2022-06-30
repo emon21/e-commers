@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminDashboard;
+use App\Http\Controllers\UserDashboard;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +22,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
 
 // $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -30,5 +32,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // ========================  Admin Route ========================
 
 
+// =================================== Admin Controller Route Start  ===================================
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
+
+   Route::get('dashboard', [AdminDashboard::class,'index'])->name('admin.dashboard');
+
+
+});
+
 
 // ========================  User Route  ========================
+Route::middleware(['auth'])->group(function (){
+
+
+   Route::get('/user/dashboard', [UserDashboard::class, 'dashboard'])->name('user.dashboard');
+
+});

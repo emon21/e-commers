@@ -14,6 +14,9 @@
     <!-- Vendors Style-->
     <link rel="stylesheet" href="{{ asset('backend') }}/css/vendors_css.css">
 
+    <!-- Custom Css-->
+    <link rel="stylesheet" href="{{ asset('backend') }}/css/admin_custom.css">
+
     <!-- Style-->
     <link rel="stylesheet" href="{{ asset('backend') }}/css/style.css">
     <link rel="stylesheet" href="{{ asset('backend') }}/css/skin_color.css">

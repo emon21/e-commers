@@ -1,0 +1,14 @@
+ul.dropdown-menu.animated.flipInX.show {
+   background: tomato;
+   margin-top: 6px !important;
+   color: blue;
+}
+
+.dark-skin .dropdown-menu > li > a {
+   color: #e7e8eb !important;
+}
+
+
+.dark-skin .dropdown-menu > li > a :hover{
+   color: #073fe6 !important;
+}

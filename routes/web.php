@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminDashboard;
+use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\UserDashboard;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
 
    Route::get('dashboard', [AdminDashboard::class,'index'])->name('admin.dashboard');
    Route::get('logout', [AdminDashboard::class, 'logout'])->name('admin.logout');
-
+   //Admin Profile
+   Route::get('AdminProfile',[AdminProfileController::class,'AdminProfile'])->name('AdminProfile');
 
 });
 

@@ -33,9 +33,14 @@ Auth::routes();
 
 
 // =================================== Admin Controller Route Start  ===================================
+
+
+Route::get('/admin', [AdminDashboard::class, 'LoginForm']);
+
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
 
    Route::get('dashboard', [AdminDashboard::class,'index'])->name('admin.dashboard');
+   Route::get('logout', [AdminDashboard::class, 'logout'])->name('admin.logout');
 
 
 });

@@ -10,4 +10,19 @@ class AdminDashboard extends Controller
    {
       return view('admin.index');
    }
+
+
+   //login from
+   public function LoginForm()
+   {
+      return view('auth.admin_login');
+   }
+
+    //logout
+    public function logout()
+    {
+       auth()->logout();
+       return redirect()->route('login')->with('success','You have been Successfull logged out');
+ 
+    }
 }

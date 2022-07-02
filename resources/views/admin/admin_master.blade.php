@@ -17,9 +17,14 @@
     <!-- Custom Css-->
     <link rel="stylesheet" href="{{ asset('backend') }}/css/admin_custom.css">
 
+
     <!-- Style-->
     <link rel="stylesheet" href="{{ asset('backend') }}/css/style.css">
     <link rel="stylesheet" href="{{ asset('backend') }}/css/skin_color.css">
+
+    <!-- Toaser  Css -->
+    <link rel="stylesheet" href="{{ asset('toastr') }}/toastr.min.css">
+
 
 </head>
 
@@ -49,6 +54,8 @@
     <!-- ./wrapper -->
 
 
+
+
     <!-- Vendor JS -->
     <script src="{{ asset('backend') }}/js/vendors.min.js"></script>
     <script src="{{ asset('backend') }}/../assets/icons/feather-icons/feather.min.js"></script>
@@ -56,11 +63,35 @@
     <script src="{{ asset('backend') }}/../assets/vendor_components/apexcharts-bundle/irregular-data-series.js"></script>
     <script src="{{ asset('backend') }}/../assets/vendor_components/apexcharts-bundle/dist/apexcharts.js"></script>
 
+
     <!-- Sunny Admin App -->
     <script src="{{ asset('backend') }}/js/template.js"></script>
     <script src="{{ asset('backend') }}/js/pages/dashboard.js"></script>
+    <script src="{{ asset('toastr') }}/toastr.min.js"></script>
+    {!! Toastr::message() !!}
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info("{{ Session::get('message') }}");
+                    brake;
 
+                case 'success':
+                    toastr.success("{{ Session::get('message') }}");
+                    brake;
 
+                case 'warning':
+                    toastr.warning("{{ Session::get('message') }}");
+                    brake;
+
+                case 'error':
+                    toastr.danger("{{ Session::get('message') }}");
+                    brake;
+
+            }
+        @endif
+    </script>
 </body>
 
 </html>

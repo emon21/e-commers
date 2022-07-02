@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
         $user = new User();
         $user->name = "User";
         $user->email = "user@mail.com";
-        $user->image = "backend/image/default.png";
+       // $user->profile_photo = "backend/image/default.png";
         $user->password = bcrypt('12345678');
         $user->role_as = 'user';
         $user->email_verified_at = Carbon::now();
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
         $user = new User();
         $user->name = "Admin";
         $user->email = "admin@mail.com";
-        $user->image = "backend/image/default.png";
+        //$user->profile_photo = "backend/image/default.png";
         $user->password = bcrypt('12345678');
         $user->role_as = 'admin';
         $user->email_verified_at = Carbon::now();

@@ -22,7 +22,7 @@ class AdminDashboard extends Controller
     public function logout()
     {
        auth()->logout();
-       return redirect()->route('login')->with('success','You have been Successfull logged out');
+       return redirect()->route('admin')->with('success','You have been Successfull logged out');
  
     }
 }

@@ -33,25 +33,31 @@ Auth::routes();
 // ========================  Admin Route ========================
 
 
-// =================================== Admin Controller Route Start  ===================================
+// =================================== Admin Route ===================================
 
 
-Route::get('/admin', [AdminDashboard::class, 'LoginForm']);
+Route::get('/admin', [AdminDashboard::class, 'LoginForm'])->name('admin');
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
 
    Route::get('dashboard', [AdminDashboard::class,'index'])->name('admin.dashboard');
    Route::get('logout', [AdminDashboard::class, 'logout'])->name('admin.logout');
    //Admin Profile
-   Route::get('AdminProfile',[AdminProfileController::class,'AdminProfile'])->name('AdminProfile');
+   
+   Route::get('Admin/profile',[AdminProfileController::class,'AdminProfile'])->name('admin.profile');
+   Route::get('admin/profile/edit',[AdminProfileController::class,'AdminProfileEdit'])->name('admin.profile.edit');
+   Route::post('admin/profile/update',[AdminProfileController::class,'AdminProfileUpdate'])->name('admin.profile.update');
 
+   Route::get('admin/password/change',[AdminProfileController::class,'AdminPasswordChange'])->name('admin.password.change');
+   Route::post('admin/password/update',[AdminProfileController::class,'AdminPasswordUpdate'])->name('admin.password.update');
 });
 
 
-// ========================  User Route  ========================
+// ===================================  User Route  ===================================
+
 Route::middleware(['auth'])->group(function (){
 
-
    Route::get('/user/dashboard', [UserDashboard::class, 'dashboard'])->name('user.dashboard');
+
 
 });

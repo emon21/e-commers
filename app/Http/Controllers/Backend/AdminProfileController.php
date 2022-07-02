@@ -81,6 +81,12 @@ class AdminProfileController extends Controller
 
       // ]);
 
+      $validateData = $request->validate([
+         'current_password'=>'required',
+         'new_password'=>'required',
+         'confirm_password'=>'required|same:new_password'
+   ]);
+
       $hashedPassword = Auth::user()->password;
      //return $hashedPassword;
       if(Hash::check($request->current_password,$hashedPassword)){
@@ -88,7 +94,8 @@ class AdminProfileController extends Controller
          $admin->password = Hash::make($request->new_password);
          $admin->save();
          Auth::logout();
-         return redirect()->route('admin');
+        // return redirect()->route('admin');
+         return redirect()->route('admin')->with('message', 'password update successfully, please login now !');
       }
 
       else{

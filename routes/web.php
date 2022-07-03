@@ -7,6 +7,7 @@ use App\Http\Controllers\frontend\IndexController;
 use App\Http\Controllers\UserDashboard;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
 
 // $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -64,3 +65,9 @@ Route::middleware(['auth'])->group(function (){
 });
 
 Route::get('/',[IndexController::class,'index']);
+Route::get('/user',[IndexController::class,'UserLogout'])->name('user.logout');
+Route::get('/user/profile',[IndexController::class,'UserProfile'])->name('user.profile');
+Route::post('/user/profile/update',[IndexController::class,'UserProfileUpdate'])->name('user.profile.update');
+
+Route::get('user/password/change',[IndexController::class,'UserPasswordChange'])->name('user.password.change');
+Route::post('user/password/update',[IndexController::class,'UserPasswordUpdate'])->name('user.password.update');

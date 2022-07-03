@@ -23,6 +23,11 @@
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/rateit.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/bootstrap-select.min.css">
 
+
+    <!-- Toaser  Css -->
+    <link rel="stylesheet" href="{{ asset('toastr') }}/toastr.min.css">
+
+
     <!-- Icons/Glyphs -->
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/font-awesome.css">
 
@@ -63,6 +68,31 @@
     <script src="{{ asset('frontend') }}/assets/js/bootstrap-select.min.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/wow.min.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/scripts.js"></script>
+    <script src="{{ asset('toastr') }}/toastr.min.js"></script>
+    {{-- {!! Toastr::message() !!} --}}
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info("{{ Session::get('message') }}");
+                    brake;
+
+                case 'success':
+                    toastr.success("{{ Session::get('message') }}");
+                    brake;
+
+                case 'warning':
+                    toastr.warning("{{ Session::get('message') }}");
+                    brake;
+
+                case 'error':
+                    toastr.danger("{{ Session::get('message') }}");
+                    brake;
+
+            }
+        @endif
+    </script>
 </body>
 
 </html>

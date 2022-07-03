@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminDashboard;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\frontend\IndexController;
 use App\Http\Controllers\UserDashboard;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +25,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
 
 // $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -59,5 +61,6 @@ Route::middleware(['auth'])->group(function (){
 
    Route::get('/user/dashboard', [UserDashboard::class, 'dashboard'])->name('user.dashboard');
 
-
 });
+
+Route::get('/',[IndexController::class,'index']);

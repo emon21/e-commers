@@ -21,13 +21,13 @@ class AdminMiddleware
             return $next($request);
           }
           else{
-            return redirect()->route('user.dashboard')->with('message' ,'Access Denied! as you are not Admin');
+            return redirect()->route('user.dashboard')->with('status' ,'Access Denied! as you are not Admin');
 
           }
       }
 
       else{
-         return redirect('/login')->with('message' ,'Please First Login');
+         return redirect('/login')->with('status' ,'Please First Login');
 
       }
      

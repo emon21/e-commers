@@ -31,9 +31,7 @@
                         @if (Session('message'))
                             <div class="alert alert-danger">
                                 <span class="text-light">
-
                                     {{ Session('message') }}
-
                                 </span>
                             </div>
                         @endif

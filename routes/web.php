@@ -3,6 +3,9 @@
 use App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\backend\SubCategoryController;
 use App\Http\Controllers\frontend\IndexController;
 use App\Http\Controllers\UserDashboard;
 use Illuminate\Support\Facades\Route;
@@ -71,3 +74,41 @@ Route::post('/user/profile/update',[IndexController::class,'UserProfileUpdate'])
 
 Route::get('user/password/change',[IndexController::class,'UserPasswordChange'])->name('user.password.change');
 Route::post('user/password/update',[IndexController::class,'UserPasswordUpdate'])->name('user.password.update');
+
+
+
+//brand all route
+Route::prefix('brand')->group(function(){
+
+   Route::get('/view',[BrandController::class,'BrandView'])->name('all.brand');
+   Route::get('/create',[BrandController::class,'BrandCreate'])->name('brand.create');
+   Route::post('/store',[BrandController::class,'BrandStore'])->name('brand.store');
+   Route::get('/edit/{brand}',[BrandController::class,'BrandEdit'])->name('brand.edit');
+   Route::post('/update',[BrandController::class,'BrandUpdate'])->name('brand.update');
+   Route::get('/delete/{id}',[BrandController::class,'BrandDelete'])->name('brand.delete');
+
+});
+
+//AdminCategory all Route
+Route::prefix('category')->group(function(){
+
+   Route::get('/view',[CategoryController::class,'CategoryView'])->name('all.category');
+   Route::get('/create',[CategoryController::class,'CategoryCreate'])->name('category.create');
+   Route::post('/store',[CategoryController::class,'CategoryStore'])->name('category.store');
+   Route::get('/edit/{id}',[CategoryController::class,'CategoryEdit'])->name('category.edit');
+   Route::post('/update',[CategoryController::class,'CategoryUpdate'])->name('category.update');
+   Route::get('/delete/{id}',[CategoryController::class,'CategoryDelete'])->name('category.delete');
+
+
+   //SUb Category Route List
+
+   Route::get('/sub/view',[SubCategoryController::class,'SubCategoryView'])->name('all.subcategory');
+   Route::get('/sub/create',[SubCategoryController::class,'SubCategoryCreate'])->name('subcategory.create');
+   Route::post('/sub/store',[SubCategoryController::class,'SubCategoryStore'])->name('subcategory.store');
+   Route::get('/sub/edit/{id}',[SubCategoryController::class,'SubCategoryEdit'])->name('subcategory.edit');
+   Route::post('/sub/update',[SubCategoryController::class,'SubCategoryUpdate'])->name('subcategory.update');
+   Route::get('/sub/delete/{id}',[SubCategoryController::class,'SubCategoryDelete'])->name('subcategory.delete');
+   
+
+
+});

@@ -63,6 +63,8 @@
     <script src="{{ asset('backend') }}/../assets/vendor_components/apexcharts-bundle/irregular-data-series.js"></script>
     <script src="{{ asset('backend') }}/../assets/vendor_components/apexcharts-bundle/dist/apexcharts.js"></script>
 
+    <script src="{{ asset('backend') }}/../assets/vendor_components/select2/dist/js/select2.full.js"></script>
+    <script src="{{ asset('backend') }}/js/pages/advanced-form-element.js"></script>
 
     <!-- Sunny Admin App -->
     <script src="{{ asset('backend') }}/js/template.js"></script>
@@ -71,7 +73,7 @@
     {!! Toastr::message() !!}
     <script>
         @if (Session::has('message'))
-            var type = "{{ Session::get('alert-type', 'info') }}"
+            var type = "{{ Session::get('alert-type', 'info', 'success', 'warning', 'error') }}"
             switch (type) {
                 case 'info':
                     toastr.info("{{ Session::get('message') }}");
@@ -92,6 +94,7 @@
             }
         @endif
     </script>
+    @yield('script')
 </body>
 
 </html>

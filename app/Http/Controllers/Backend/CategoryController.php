@@ -33,7 +33,7 @@ class CategoryController extends Controller
          'category_name_en' => $request->category_name_en,
          'category_slug_en' => Str::slug($request->category_name_en),
          'category_name_hin' => $request->category_name_hin,
-         'category_slug_hin' => Str::slug($request->category_name_hin),
+         'category_slug_hin' => $request->category_name_hin,
          'category_icon' => $request->category_icon,
       ]);
 

@@ -100,8 +100,7 @@ Route::prefix('category')->group(function(){
    Route::post('/update',[CategoryController::class,'CategoryUpdate'])->name('category.update');
    Route::get('/delete/{id}',[CategoryController::class,'CategoryDelete'])->name('category.delete');
 
-
-   //SUb Category Route List
+   //Admin SUb Category Route List
 
    Route::get('/sub/view',[SubCategoryController::class,'SubCategoryView'])->name('all.subcategory');
    Route::get('/sub/create',[SubCategoryController::class,'SubCategoryCreate'])->name('subcategory.create');
@@ -110,18 +109,20 @@ Route::prefix('category')->group(function(){
    Route::post('/sub/update',[SubCategoryController::class,'SubCategoryUpdate'])->name('subcategory.update');
    Route::get('/sub/delete/{id}',[SubCategoryController::class,'SubCategoryDelete'])->name('subcategory.delete');
 
+
 //Admin Sub SUb Category Route List
 
 Route::get('/sub/sub/view',[SubCategoryController::class,'SubSubCategoryView'])->name('all.subsubcategory');
 
-
 Route::get('/sub/sub/create',[SubCategoryController::class,'SubSubCategoryCreate'])->name('sub.subsubcategory.create');
 
-
+//subcategory ajax url
 Route::get('/subcategory/{category_id}',[SubCategoryController::class,'GetSubCategory']);
 
-Route::post('/sub/sub/store',[SubCategoryController::class,'SubSubCategoryStore'])->name('subsubsubcategory.store');
+//Sub subcategory ajax url
+Route::get('/sub-subcategory/ajax/{subcategory_id}',[SubCategoryController::class,'GetSubSubCategory']);
 
+Route::post('/sub/sub/store',[SubCategoryController::class,'SubSubCategoryStore'])->name('subsubsubcategory.store');
 
 Route::get('/sub/sub/edit/{editID}',[SubCategoryController::class,'SubSubCategoryEdit'])->name('subsubcategory.edit');
 

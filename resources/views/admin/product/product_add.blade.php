@@ -1,5 +1,7 @@
 @extends('admin.admin_master')
 @section('admin')
+    <script src="{{ asset('backend') }}/js/jquery.min.js"></script>
+
     <div class="container-full">
 
         <!-- Main content -->
@@ -85,16 +87,13 @@
                                                 <div class="form-group">
                                                     <h5>Sub Sub Category Select <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <select name="brand_id" class="form-control">
+                                                        <select name="subsubcategory_id" class="form-control">
                                                             <option value="" selected="" disabled="">Select
-                                                                Category
+                                                                SubSubCategory
                                                             </option>
-                                                            @foreach ($brands as $brand)
-                                                                <option value="{{ $brand->id }}">
-                                                                    {{ $brand->brand_name_en }}</option>
-                                                            @endforeach
+
                                                         </select>
-                                                        @error('brand_id')
+                                                        @error('subsubcategory_id')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
@@ -349,4 +348,60 @@
         </section>
         <!-- /.content -->
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            //sub category
+            $('select[name="category_id"]').on('change', function() {
+                var category_id = $(this).val();
+                if (category_id) {
+                    $.ajax({
+                        url: "{{ url('/category/subcategory') }}/" + category_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            var d = $('select[name="subcategory_id"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="subcategory_id"]').append(
+                                    '<option value="' + value.id + '">' + value
+                                    .subcategory_name_en + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+
+            //sub sub category
+            $('select[name="subcategory_id"]').on('change', function() {
+                var subcategory_id = $(this).val();
+                if (subcategory_id) {
+                    $.ajax({
+                        url: "{{ url('/category/sub-subcategory/ajax') }}/" + subcategory_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            var d = $('select[name="subsubcategory_id"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="subsubcategory_id"]').append(
+                                    '<option value="' + value.id + '">' + value
+                                    .sub_subcategory_name_en + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+
+
+
+
+
+
+
+        });
+    </script>
 @endsection

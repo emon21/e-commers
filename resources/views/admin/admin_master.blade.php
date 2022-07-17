@@ -63,6 +63,16 @@
     <script src="{{ asset('backend') }}/../assets/vendor_components/apexcharts-bundle/irregular-data-series.js"></script>
     <script src="{{ asset('backend') }}/../assets/vendor_components/apexcharts-bundle/dist/apexcharts.js"></script>
 
+    <script src="{{ asset('backend') }}/../assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js">
+    </script>
+
+    <script src="{{ asset('backend') }}/../assets/vendor_components/ckeditor/ckeditor.js"></script>
+    <script src="{{ asset('backend') }}/../assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js">
+    </script>
+    <script src="{{ asset('backend') }}/js/pages/editor.js"></script>
+
+
+
     <script src="{{ asset('backend') }}/../assets/vendor_components/select2/dist/js/select2.full.js"></script>
     <script src="{{ asset('backend') }}/js/pages/advanced-form-element.js"></script>
 

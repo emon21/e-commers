@@ -11,12 +11,12 @@ class CategoryController extends Controller
     public function CategoryView()
     {
       $category = Category::latest()->get();
-      return view('admin.category.view',compact('category'));
+      return view('admin.category.category_view',compact('category'));
     }
 
     public function CategoryCreate()
     {
-      return view('admin.category.create');
+      return view('admin.category.category_create');
     }
 
     public function CategoryStore(Request $request)
@@ -49,7 +49,7 @@ class CategoryController extends Controller
     public function CategoryEdit($id)
     {
       $category = Category::findOrFail($id);
-      return view('admin.category.edit',compact('category'));
+      return view('admin.category.category_edit',compact('category'));
 
     }
 

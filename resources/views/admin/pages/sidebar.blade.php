@@ -91,7 +91,7 @@ $route = Route::current()->getName();
                     <li class="{{ $route == 'add-product' ? 'active' : '' }}"><a
                             href="{{ route('add-product') }}"><i class="ti-more"></i>Add Product</a></li>
 
-                    <li><a href=""><i class="ti-more"></i>Manage Product</a></li>
+                    <li><a href="{{ route('manage-product') }}"><i class="ti-more"></i>Manage Product</a></li>
 
                     {{-- <li><a href="gallery.html"><i class="ti-more"></i>Gallery</a></li>
                     <li><a href="faq.html"><i class="ti-more"></i>FAQs</a></li>

@@ -32,8 +32,12 @@
                                         @foreach ($subcategory as $item)
                                             <tr>
                                                 <td>{{ $loop->index + 1 }}</td>
-                                                <td>{{ $item['category']['category_name_en'] }}</td>
-                                                <td>{{ $item->subcategory_name_en }}</td>
+                                                <td><span
+                                                        class="badge badge-primary">{{ $item['category']['category_name_en'] }}</span>
+                                                </td>
+                                                <td><span
+                                                        class="badge badge-success p-2">{{ $item->subcategory_name_en }}</span>
+                                                </td>
                                                 <td>{{ $item->subcategory_name_hin }}</td>
 
                                                 <td>

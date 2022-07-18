@@ -231,9 +231,10 @@
                                                     <div class="controls">
                                                         <input type="file" name="product_thambnil"
                                                             class="form-control" onchange="mainThamUrl(this)">
-                                                        <img src="" alt="" id="mainThmb"
-                                                            style="width: 80px;height: 80px;margin-top: 5px;">
+
+                                                        <img src="" alt="" id="mainThmb">
                                                     </div>
+
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">

@@ -140,6 +140,7 @@ Route::get('/sub/sub/delete/{deleteID}',[SubCategoryController::class,'SubSubCat
 Route::prefix('product')->group(function(){
 
    Route::get('/add',[ProductController::class,'AddProduct'])->name('add-product');
+   Route::post('/store',[ProductController::class,'ProductStore'])->name('product-store');
 
 
 });

@@ -16,7 +16,8 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col">
-                            <form novalidate>
+                            <form action="{{ route('product-store') }}" method="post" enctype="multipart/form-data">
+                                @csrf
                                 <div class="row">
                                     <div class="col-12">
 
@@ -106,17 +107,19 @@
                                                     <div class="controls">
                                                         <input type="text" name="product_name_en" class="form-control"
                                                             required
-                                                            data-validation-required-message="This field is required">
+                                                            data-validation-required-message="This field is required"
+                                                            placeholder="Product Name English">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <h5>Product Name Hindi<span class="text-danger">*</span></h5>
+                                                    <h5>Product Code<span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="text" name="product_name_hin" class="form-control"
-                                                            required
-                                                            data-validation-required-message="This field is required">
+                                                        <input type="text" name="product_code" class="form-control"
+                                                            data-validation-required-message="This field is required"
+                                                            placeholder="Enter Product Code" readonly
+                                                            value="{{ $product }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -124,17 +127,6 @@
 
                                         <div class="row">
                                             <!-- Start 3rd Row -->
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <h5>Product Code<span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="text" name="product_code" class="form-control"
-                                                            required
-                                                            data-validation-required-message="This field is required">
-                                                    </div>
-                                                </div>
-
-                                            </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <h5>Product Quantity<span class="text-danger">*</span></h5>
@@ -153,18 +145,7 @@
                                                         placeholder="add tags">
                                                 </div>
                                             </div>
-                                        </div><!-- End 3rd Row -->
 
-                                        <div class="row">
-                                            <!-- Start 4th Row -->
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <h5>Product Tags hin<span class="text-danger">*</span></h5>
-                                                    <input type="text" name="product_tags_hin" class="form-control"
-                                                        value="Lorem,Ipsum,Amet" data-role="tagsinput"
-                                                        placeholder="add tags">
-                                                </div>
-                                            </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <h5>Product Size En<span class="text-danger">*</span></h5>
@@ -175,17 +156,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <h5>Product Size Hin<span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="text" name="product_size_hin"
-                                                            class="form-control" value="Small,Medium,Large"
-                                                            data-role="tagsinput" placeholder="add tags">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- End 4th Row -->
+
+                                        </div><!-- End 3rd Row -->
 
                                         <div class="row">
                                             <!-- Start 5th Row -->
@@ -197,16 +169,7 @@
                                                         placeholder="add tags">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <h5>Product Color Hin<span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="text" name="product_color_hin"
-                                                            class="form-control" value="Lorem,Ipsum,Amet"
-                                                            data-role="tagsinput" placeholder="add tags">
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <h5>Selling Price<span class="text-danger">*</span></h5>
@@ -215,37 +178,38 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><!-- End 5th Row -->
 
-                                        <div class="row">
-                                            <!-- Start 6th Row -->
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <h5>Product Discount Price<span class="text-danger">*</span></h5>
                                                     <input type="text" name="discount_price" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
+
+                                        </div><!-- End 5th Row -->
+
+                                        <div class="row">
+                                            <!-- Start 6th Row -->
+
+                                            <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <h5>Product Thambnil<span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="file" name="product_thambnil"
-                                                            class="form-control" onchange="mainThamUrl(this)">
-
-                                                        <img src="" alt="" id="mainThmb">
+                                                        <input type="file" name="feature_img" class="form-control"
+                                                            onchange="mainThamUrl(this)">
+                                                        <img src="" alt="" id="mainThmb"
+                                                            class="mt-2">
                                                     </div>
-
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <h5>Multiple Image<span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="file" name="multiImg[]" class="form-control"
+                                                        <input type="file" name="multi_img[]" class="form-control"
                                                             multiple="" id="multiImg">
                                                     </div>
-                                                    <div class="row" id="preview_img">
-
+                                                    <div class="row mt-2" id="preview_img">
                                                     </div>
                                                 </div>
                                             </div>
@@ -253,87 +217,78 @@
 
                                         <div class="row">
                                             <!-- Start 7th Row -->
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
                                                     <h5>Short Description English <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <textarea name="short_desc_en" class="form-control" rows="10" cols="80"
-                                                            placeholder="Short Description English">
-                                                           </textarea>
+                                                        {{-- <textarea id="editor2" name="short_desc_en" class="form-control" rows="10" cols="30"
+                                                            placeholder="Short Description English"></textarea> --}}
+                                                        <textarea name="short_desc_en" class="form-control" rows="10" cols="10"
+                                                            placeholder="Short Description English"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <h5>Short Description Hindi <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <textarea name="short_desc_hin" class="form-control" rows="10" cols="80"
-                                                            placeholder="Short Description Hindi"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                        </div><!-- End 7th Row -->
-
-
-                                        <div class="row">
-                                            <!-- Start 8th Row -->
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
                                                     <h5>Long Description English <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-
                                                         <textarea name="long_desc_en" id="editor1" class="form-control" rows="10" cols="80" required
                                                             placeholder="Textarea text">Long Description English</textarea>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div><!-- End 7th Row -->
 
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <h5>Long Description Hindi<span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-
-                                                        <textarea name="long_desc_hin" id="editor2" class="form-control" rows="10" cols="80" required
-                                                            placeholder="Textarea text">Long Description Hindi</textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- End 8th Row -->
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <div class="controls">
                                                 <fieldset>
-                                                    <input type="checkbox" id="checkbox_2" value="x">
+                                                    <input type="checkbox" id="checkbox_2" value="1"
+                                                        name="hot_deals">
                                                     <label for="checkbox_2">Hot Deals</label>
                                                 </fieldset>
                                                 <fieldset>
-                                                    <input type="checkbox" id="checkbox_3" value="y">
+                                                    <input type="checkbox" id="checkbox_3" value="1"
+                                                        name="featured">
                                                     <label for="checkbox_3">Featured</label>
                                                 </fieldset>
                                             </div>
                                         </div>
                                     </div>
 
-
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <div class="controls">
                                                 <fieldset>
-                                                    <input type="checkbox" id="checkbox_4" value="x">
-                                                    <label for="checkbox_4">Special Offer</label>
+                                                    <input type="checkbox" id="md_checkbox_21"
+                                                        class="filled-in chk-col-primary" name="special_offer"
+                                                        value="1">
+                                                    <label for="md_checkbox_21">Special Offer</label>
                                                 </fieldset>
                                                 <fieldset>
-                                                    <input type="checkbox" id="checkbox_5" value="y">
-                                                    <label for="checkbox_5">Special Deals</label>
+                                                    <input type="checkbox" id="md_checkbox_22"
+                                                        class="filled-in chk-col-success" name="special_deals"
+                                                        value="1">
+                                                    <label for="md_checkbox_22">Special Deals</label>
                                                 </fieldset>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Product Status :</label>
+                                            <input name="status" type="radio" class="with-gap radio-col-success"
+                                                id="radio_3" value="1">
+                                            <label for="radio_3" class="d-block">Enable</label>
+                                            <input name="status" class="with-gap radio-col-danger" type="radio"
+                                                id="radio_4" value="0">
+                                            <label for="radio_4">Disable</label>
                                         </div>
                                     </div>
                                 </div>
@@ -359,7 +314,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-            //sub category
+            // category with -> sub category data show
             $('select[name="category_id"]').on('change', function() {
                 var category_id = $(this).val();
                 if (category_id) {
@@ -382,7 +337,7 @@
                 }
             });
 
-            //sub sub category
+            // sub category with -> sub sub category data show
             $('select[name="subcategory_id"]').on('change', function() {
                 var subcategory_id = $(this).val();
                 if (subcategory_id) {
@@ -403,13 +358,6 @@
                     alert('danger');
                 }
             });
-
-
-
-
-
-
-
         });
     </script>
 
@@ -425,7 +373,7 @@
         }
     </script>
 
-    // --------------------------- Show Multi Image JavaScript Code ---------------------------
+    <!--------------------------- Show Multi Image JavaScript Code --------------------------->
 
     <script>
         $(document).ready(function() {
@@ -458,5 +406,6 @@
             });
         });
     </script>
-    // --------------------------- End Show Multi Image JavaScript Code. ---------------------------
+
+    <!--------------------------- End Show Multi Image JavaScript Code. --------------------------->
 @endsection

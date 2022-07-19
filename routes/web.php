@@ -9,6 +9,7 @@ use App\Http\Controllers\backend\SubCategoryController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\frontend\IndexController;
 use App\Http\Controllers\UserDashboard;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +24,24 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/last', function () {
+
+   $code = 'Emon-3';
+
+   if ($code) {
+       $code_array = explode("-", $code);
+       if ($code_array) {
+           $last_one = array_splice($code_array, -1);
+       }
+       $final_code = implode(" ", $last_one);
+       $final_string = implode(" ", $code_array);
+       $final_code = $final_string .'-'.$final_code+1;
+
+       return $final_code;
+   }
+});
+
 
 Route::get('/', function () {
     return view('welcome');

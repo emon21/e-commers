@@ -36,20 +36,52 @@ class ProductController extends Controller
       //$code = rand('abc-',10000 , 99999);
       $product_code = rand(100000,999999);
       $product = ucfirst($x).' - '.$product_code;
-     // return $product;
+     // return $product;=
 
       return view('admin.product.product_add',compact('categories','brands','product'));
     }
 
     public function ProductStore(Request $request)
     {
-       // return $request->all();
      
       //featured image uploads
       $image = $request->file('feature_img');
       $save_url = time() . '.' .$image->getClientOriginalextension();
       $image->move(public_path('upload/product/'),$save_url); 
       $img_url = 'upload/product/'.$save_url;
+
+      $last_product = Product::all()->last();
+      $final_code =   'Product-12560';
+   
+      if($last_product){
+
+         $code = $last_product->product_code;
+
+         if ($code) {
+            
+             $code_array = explode("-", $code);
+
+             if ($code_array) {
+                 $last_one = array_splice($code_array, -1);
+             }
+
+             $final_code = implode(" ", $last_one);
+             $final_string = implode(" ", $code_array);
+             $final_code = $final_string .'-'.$final_code+1;
+
+         // $code = $last_product->product_code;
+
+         //    if ($code) {
+         //        $code_array = explode("-", $code);
+         //        if ($code_array) {
+         //            $last_one = array_splice($code_array, -1);
+         //        }
+         //        $final_code = Str::slug(implode(" ", $last_one));
+         //    }
+
+         // $last_product_code = $last_product->product_code;
+         }
+      }
 
       $product = Product::insertGetId([
 
@@ -59,7 +91,7 @@ class ProductController extends Controller
             'subsubcategory_id' => $request->subsubcategory_id,
             'product_name_en' => $request->product_name_en,
             'product_slug_en' => Str::slug($request->product_name_en),
-            'product_code' => $request->product_code,
+            'product_code' => $final_code,
             'product_qty' => $request->product_qty,
             'product_tags_en' => $request->product_tags_en,
             'product_size_en' => $request->product_size_en,
@@ -76,6 +108,10 @@ class ProductController extends Controller
             'status' => $request->status,
 
       ]);
+
+//dd($productId);
+
+  //  return $product_id = $product->id;
 
       // if($request->hasFile('feature_img')) { 
       //    $image = $request->file('feature_img');
@@ -115,13 +151,14 @@ class ProductController extends Controller
          'alert-type' => 'success',
       );
    
-      return redirect()->route('add-product')->with($notification);
+      return redirect()->route('manage-product')->with($notification);
     }
 
     public function ManageProduct()
     {
       $products = Product::latest()->get();
+      //return $products;
       return view('admin.product.product_view',compact('products'));
     }
-    }
+    
 }

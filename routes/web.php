@@ -5,8 +5,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\backend\SubCategoryController;
-use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\frontend\IndexController;
 use App\Http\Controllers\UserDashboard;
 use App\Models\Product;
@@ -172,3 +173,24 @@ Route::prefix('product')->group(function(){
 
 
 });
+
+
+
+//Admin Slider all route
+Route::prefix('slider')->group(function(){
+
+   Route::get('/view',[SliderController::class,'SliderView'])->name('all.slider');
+   Route::get('/add',[SliderController::class,'SliderAdd'])->name('slider-add');
+   Route::post('/store',[SliderController::class,'SliderStore'])->name('slider-store');
+   Route::get('/edit/{id}',[SliderController::class,'SliderEdit'])->name('slider-edit');
+   Route::post('/update',[SliderController::class,'SliderUpdate'])->name('slider-update');
+   Route::get('delete/{id}',[SliderController::class,'SliderDelete'])->name('slider.delete');
+
+
+   Route::get('inactive/{id}',[SliderController::class,'SliderInactive'])->name('slider.inactive');
+   Route::get('active/{id}',[SliderController::class,'SliderActive'])->name('slider.active');
+  
+  
+
+});
+

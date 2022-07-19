@@ -91,11 +91,32 @@ $route = Route::current()->getName();
                     <li class="{{ $route == 'add-product' ? 'active' : '' }}"><a
                             href="{{ route('add-product') }}"><i class="ti-more"></i>Add Product</a></li>
 
-                    <li><a href="{{ route('manage-product') }}"><i class="ti-more"></i>Manage Product</a></li>
+                    <li class="{{ $route == 'manage-product' ? 'active' : '' }}"><a
+                            href="{{ route('manage-product') }}"><i class="ti-more"></i>Manage Product</a></li>
 
                     {{-- <li><a href="gallery.html"><i class="ti-more"></i>Gallery</a></li>
                     <li><a href="faq.html"><i class="ti-more"></i>FAQs</a></li>
                     <li><a href="timeline.html"><i class="ti-more"></i>Timeline</a></li> --}}
+                </ul>
+            </li>
+
+
+            <li class="treeview {{ $prefix == 'slider' ? 'active' : '' }}">
+                <a href="#">
+                    <i data-feather="file"></i>
+                    <span>Slider</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ $route == 'slider-add' ? 'active' : '' }}"><a
+                            href="{{ route('slider-add') }}"><i class="ti-more"></i>Add Slider</a></li>
+
+                    <li class="{{ $route == 'all.slider' ? 'active' : '' }}"><a
+                            href="{{ route('all.slider') }}"><i class="ti-more"></i>Manage Slider</a></li>
+
+
                 </ul>
             </li>
 
@@ -141,8 +162,8 @@ $route = Route::current()->getName();
 
     <div class="sidebar-footer">
         <!-- item-->
-        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings"
-            aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
+        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title=""
+            data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
         <!-- item-->
         <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title=""
             data-original-title="Email"><i class="ti-email"></i></a>

@@ -94,7 +94,7 @@
 
 
                                                 <td width="20%">
-                                                    <a href="{{ route('edit-product', $product->id) }}"
+                                                    <a href="{{ route('product.details', $product->id) }}"
                                                         class="btn btn-success text-light" title="Product View"><i
                                                             class="fa fa-eye"></i></a>
                                                     <a href="{{ route('edit-product', $product->id) }}"

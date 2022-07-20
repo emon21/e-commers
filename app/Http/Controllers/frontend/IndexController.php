@@ -4,6 +4,9 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\MultiImg;
+use App\Models\Product;
+use App\Models\Slider;
 use App\Models\SubCategory;
 use App\Models\SubSubCategory;
 use Illuminate\Http\Request;
@@ -16,10 +19,16 @@ class IndexController extends Controller
 {
     public function index()
     {
+       $products = Product::where('status',1)->orderBy('id','desc')->get();
+       $sliders = Slider::where('status',1)->orderBy('id','desc')->limit(5)->get();
       $categories = Category::orderBy('category_name_en', 'ASC')->get();
+
+      $featured = Product::where('featured',1)->orderBy('id','desc')->limit(6)->get();
+      $hot_deals = Product::where('hot_deals',1)->orderBy('id','desc')->limit(3)->get();
+
      // $subcategories = SubCategory::Where('category_id', $category->id)->orderBy('subcategory_name_en', 'ASC')->get();
      // $subsubcategories = SubSubCategory::Where('subcategory_id', $sub->id)->orderBy('sub_subcategory_name_en', 'ASC') ->get();
-      return view('frontend.index',compact('categories'));
+      return view('frontend.index',compact('categories','sliders','products','featured','hot_deals'));
     }
 
     //user Logout
@@ -102,5 +111,16 @@ class IndexController extends Controller
          else{
          return redirect()->route('admin.profile');
          }
+    }
+
+    //Product
+    public function ProductDetails($id,$slug)
+    {
+      
+$product = Product::findOrFail($id);
+$multiImages = MultiImg::where('product_id',$id)->get();
+
+return view('frontend.product.product_details',compact('product','multiImages'));
+
     }
 }

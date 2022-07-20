@@ -314,5 +314,15 @@ class ProductController extends Controller
 
    }
 
+   public function ProductDetails($id)
+   {
+     // $products = Product::findOrFail($id);
+     
+      $multiImages = MultiImg::where('product_id',$id)->get();
+      $products = Product::findOrFail($id);
+      return view('admin.product.product_details',compact('products','multiImages'));
+
+   }
+
    
 }

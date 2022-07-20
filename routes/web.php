@@ -154,8 +154,6 @@ Route::get('/sub/sub/delete/{deleteID}',[SubCategoryController::class,'SubSubCat
 });
 
 
-
-
 //Admin Product all route
 Route::prefix('product')->group(function(){
 
@@ -170,6 +168,7 @@ Route::prefix('product')->group(function(){
    Route::get('active/{id}',[ProductController::class,'ProductInactive'])->name('product.active');
    Route::get('inactive/{id}',[ProductController::class,'ProductActive'])->name('product.inactive');
    Route::get('delete/{id}',[ProductController::class,'ProductDelete'])->name('product.delete');
+   Route::get('details/{id}',[ProductController::class,'ProductDetails'])->name('product.details');
 
 
 });
@@ -186,11 +185,13 @@ Route::prefix('slider')->group(function(){
    Route::post('/update',[SliderController::class,'SliderUpdate'])->name('slider-update');
    Route::get('delete/{id}',[SliderController::class,'SliderDelete'])->name('slider.delete');
 
-
    Route::get('inactive/{id}',[SliderController::class,'SliderInactive'])->name('slider.inactive');
    Route::get('active/{id}',[SliderController::class,'SliderActive'])->name('slider.active');
-  
   
 
 });
 
+
+
+//Frontend Product Details
+Route::get('product/details/{id}/{slug}',[IndexController::class,'ProductDetails']);

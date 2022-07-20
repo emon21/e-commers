@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Brian2694\Toastr\Facades\Toastr;
@@ -13,7 +16,10 @@ class IndexController extends Controller
 {
     public function index()
     {
-      return view('frontend.index');
+      $categories = Category::orderBy('category_name_en', 'ASC')->get();
+     // $subcategories = SubCategory::Where('category_id', $category->id)->orderBy('subcategory_name_en', 'ASC')->get();
+     // $subsubcategories = SubSubCategory::Where('subcategory_id', $sub->id)->orderBy('sub_subcategory_name_en', 'ASC') ->get();
+      return view('frontend.index',compact('categories'));
     }
 
     //user Logout

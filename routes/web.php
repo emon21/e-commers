@@ -197,6 +197,14 @@ Route::prefix('slider')->group(function(){
 //Frontend Product Details
 Route::get('product/details/{id}/{slug}',[IndexController::class,'ProductDetails']);
 
+//Frontend Product Tag
+Route::get('product/tag/{tag}',[IndexController::class,'TagWishProduct']);
+
+//Frontend subcategory wash data
+Route::get('subcategory/product/{subcat_id}/{slug}',[IndexController::class,'SubCatWishProduct']);
+
+//Frontend Sub-subcategory wash data
+Route::get('subsubcategory/product/{subsubcat_id}/{slug}',[IndexController::class,'SubSubCatWishProduct']);
 
 
 //brand all route

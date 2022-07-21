@@ -32,10 +32,20 @@ class IndexController extends Controller
       $new_arrivals = Product::latest()->orderBy('id','desc')->get();
 
 
+      //category product
+      $skip_category = Category::skip(0)->first();
+      $skip_product = Product::where('status',1)->where('category_id',$skip_category->id)->orderBy('id','desc')->get();
+
+      //brand product
+      $skip_brand = Brand::skip(0)->first();
+      $brand_product = Product::where('status',1)->where('category_id',$skip_brand->id)->orderBy('id','desc')->get();
+
      // $subcategories = SubCategory::Where('category_id', $category->id)->orderBy('subcategory_name_en', 'ASC')->get();
      // $subsubcategories = SubSubCategory::Where('subcategory_id', $sub->id)->orderBy('sub_subcategory_name_en', 'ASC') ->get();
-      return view('frontend.index',compact('categories','sliders','products','featured','hot_deals','special_offer','special_deals','brands','new_arrivals'));
+      return view('frontend.index',compact('categories','sliders','products','featured','hot_deals','special_offer','special_deals','brands','new_arrivals','skip_category','skip_product','skip_brand','brand_product'));
     }
+
+    
 
     //user Logout
     public function UserLogout()
@@ -123,10 +133,54 @@ class IndexController extends Controller
     public function ProductDetails($id,$slug)
     {
       
-$product = Product::findOrFail($id);
-$multiImages = MultiImg::where('product_id',$id)->get();
+      $product = Product::findOrFail($id);
 
-return view('frontend.product.product_details',compact('product','multiImages'));
+      //product color
+      $color_en = $product->product_color_en;
+      $product_color_en = explode(',',$color_en);
 
+      //product size
+      $size_en = $product->product_size_en;
+      $product_size_en = explode(',',$size_en);
+
+      //data compact
+      // $data['size_en'] = $product->product_color_en;
+      // $data['product_size_en'] = explode(',',$size_en);
+
+      $multiImages = MultiImg::where('product_id',$id)->get();
+
+      // return view('frontend.product.product_details',compact('product','multiImages','color_en','size_en
+      // ',$data));
+
+      //related product in category
+      $cat_id = $product->category_id;
+      $relatedProduct = Product::where('category_id',$cat_id)->where('id','!=',$id)->orderBy('id','desc')->get();
+
+      return view('frontend.product.product_details',compact('product','multiImages','product_color_en','product_size_en','relatedProduct'));
+
+    }
+
+    public function TagWishProduct($tag)
+    {
+      $products = Product::where('status',1)->where('product_tags_en',$tag)->orderBy('id','desc')->paginate(3);
+      $categories = Category::orderBy('category_name_en', 'ASC')->get();
+      return view('frontend.tags.tags_view',compact('products','categories'));
+      
+    }
+
+
+    public function SubCatWishProduct($subcat_id,$slug)
+    {
+      $products = Product::where('status',1)->where('subcategory_id',$subcat_id)->orderBy('id','desc')->paginate(3);
+      $categories = Category::orderBy('category_name_en', 'ASC')->get();
+      return view('frontend.product.subcategory_view',compact('products','categories'));
+    }
+
+
+    public function SubSubCatWishProduct($subsubcat_id,$slug)
+    {
+      $products = Product::where('status',1)->where('subsubcategory_id',$subsubcat_id)->orderBy('id','desc')->paginate(6);
+      $categories = Category::orderBy('category_name_en', 'ASC')->get();
+      return view('frontend.product.sub_subcategory_view',compact('products','categories'));
     }
 }

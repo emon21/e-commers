@@ -58,8 +58,10 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
                     <!-- ============================================================= LOGO ============================================================= -->
-                    <div class="logo"> <a href="{{ url('/') }}"> <img
-                                src="{{ asset('frontend') }}/assets/images/logo.png" alt="logo"> </a>
+                    <div class="logo">
+                        <a href="{{ url('/') }}">
+                            <img src="{{ asset('frontend') }}/assets/images/logo.png" alt="logo">
+                        </a>
                     </div>
                     <!-- /.logo -->
                     <!-- ============================================================= LOGO : END ============================================================= -->
@@ -196,8 +198,15 @@
 
                                                         @foreach ($subcategories as $sub)
                                                             <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                                                                <h2 class="title">{{ $sub->subcategory_name_en }}
-                                                                </h2>
+
+                                                                {{-- <h2 class="title">{{ $sub->subcategory_name_en }}
+                                                                </h2> --}}
+
+                                                                <a
+                                                                    href="{{ url('subcategory/product/' . $sub->id . '/' . $sub->subcategory_slug_en) }}">
+                                                                    <h2 class="title">{{ $sub->subcategory_name_en }}
+                                                                    </h2>
+                                                                </a>
                                                                 @php
                                                                     $subsubcategories = App\Models\SubSubCategory::Where('subcategory_id', $sub->id)
                                                                         ->orderBy('sub_subcategory_name_en', 'ASC')
@@ -206,7 +215,7 @@
                                                                 <ul class="links">
                                                                     @foreach ($subsubcategories as $subsub)
                                                                         <li><a
-                                                                                href="#">{{ $subsub->sub_subcategory_name_en }}</a>
+                                                                                href="{{ url('subsubcategory/product/' . $subsub->id . '/' . $subsub->sub_subcategory_slug_en) }}">{{ $subsub->sub_subcategory_name_en }}</a>
                                                                         </li>
                                                                     @endforeach
                                                                 </ul>

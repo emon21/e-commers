@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\MultiImg;
 use App\Models\Product;
@@ -25,10 +26,15 @@ class IndexController extends Controller
 
       $featured = Product::where('featured',1)->orderBy('id','desc')->limit(6)->get();
       $hot_deals = Product::where('hot_deals',1)->orderBy('id','desc')->limit(3)->get();
+      $special_offer = Product::where('special_offer',1)->orderBy('id','desc')->limit(3)->get();
+      $special_deals = Product::where('special_deals',1)->orderBy('id','desc')->limit(3)->get();
+      $brands = Brand::latest()->get();
+      $new_arrivals = Product::latest()->orderBy('id','desc')->get();
+
 
      // $subcategories = SubCategory::Where('category_id', $category->id)->orderBy('subcategory_name_en', 'ASC')->get();
      // $subsubcategories = SubSubCategory::Where('subcategory_id', $sub->id)->orderBy('sub_subcategory_name_en', 'ASC') ->get();
-      return view('frontend.index',compact('categories','sliders','products','featured','hot_deals'));
+      return view('frontend.index',compact('categories','sliders','products','featured','hot_deals','special_offer','special_deals','brands','new_arrivals'));
     }
 
     //user Logout

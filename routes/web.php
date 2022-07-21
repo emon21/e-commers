@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\frontend\IndexController;
+use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\UserDashboard;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -195,3 +196,27 @@ Route::prefix('slider')->group(function(){
 
 //Frontend Product Details
 Route::get('product/details/{id}/{slug}',[IndexController::class,'ProductDetails']);
+
+
+
+//brand all route
+Route::prefix('blog')->group(function(){
+
+   //blog route List
+   Route::get('/view',[BlogController::class,'BlogView'])->name('blog.all');
+
+   //category route List
+
+   Route::get('/category/view',[BlogController::class,'CategoryView'])->name('blog.category.all');
+
+      //Tag route List
+
+      Route::get('/tag/view',[BlogController::class,'TagView'])->name('tag.all');
+
+   // Route::get('/create',[BrandController::class,'BrandCreate'])->name('brand.create');
+   // Route::post('/store',[BrandController::class,'BrandStore'])->name('brand.store');
+   // Route::get('/edit/{brand}',[BrandController::class,'BrandEdit'])->name('brand.edit');
+   // Route::post('/update',[BrandController::class,'BrandUpdate'])->name('brand.update');
+   // Route::get('/delete/{id}',[BrandController::class,'BrandDelete'])->name('brand.delete');
+
+});

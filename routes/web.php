@@ -206,6 +206,9 @@ Route::get('subcategory/product/{subcat_id}/{slug}',[IndexController::class,'Sub
 //Frontend Sub-subcategory wash data
 Route::get('subsubcategory/product/{subsubcat_id}/{slug}',[IndexController::class,'SubSubCatWishProduct']);
 
+//Product View Modal With Ajax
+Route::get('product/view/modal/{id}',[IndexController::class,'ProductViewAjax']);
+
 
 //brand all route
 Route::prefix('blog')->group(function(){
@@ -236,3 +239,5 @@ Route::prefix('blog')->group(function(){
    // Route::get('/delete/{id}',[BrandController::class,'BrandDelete'])->name('brand.delete');
 
 });
+
+

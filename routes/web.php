@@ -213,10 +213,14 @@ Route::get('product/view/modal/{id}',[IndexController::class,'ProductViewAjax'])
 //Add To Cart Store Data
 Route::post('/cart/data/store/{id}',[CartController::class,'AddToCart']);
 
+// Get Data from mini cart
+Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
+
+// Remove mini cart
+Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 
 //brand all route
 Route::prefix('blog')->group(function(){
-
   
    //category route List
    Route::get('/category/view',[BlogController::class,'CategoryView'])->name('blog.category.all');

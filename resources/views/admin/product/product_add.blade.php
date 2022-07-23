@@ -30,7 +30,7 @@
                                                     <div class="controls">
                                                         <select name="brand_id" class="form-control">
                                                             <option value="" selected="" disabled="">Select
-                                                                Category
+                                                                Brand
                                                             </option>
                                                             @foreach ($brands as $brand)
                                                                 <option value="{{ $brand->id }}">
@@ -165,7 +165,7 @@
                                                 <div class="form-group">
                                                     <h5>Product Color En<span class="text-danger">*</span></h5>
                                                     <input type="text" name="product_color_en" class="form-control"
-                                                        value="Lorem,Ipsum,Amet" data-role="tagsinput"
+                                                        value="Red,Green,Blue,White" data-role="tagsinput"
                                                         placeholder="add tags">
                                                 </div>
                                             </div>

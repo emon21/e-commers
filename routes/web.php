@@ -210,16 +210,24 @@ Route::get('subsubcategory/product/{subsubcat_id}/{slug}',[IndexController::clas
 //brand all route
 Route::prefix('blog')->group(function(){
 
-   //blog route List
-   Route::get('/view',[BlogController::class,'BlogView'])->name('blog.all');
-
+  
    //category route List
-
    Route::get('/category/view',[BlogController::class,'CategoryView'])->name('blog.category.all');
+   Route::get('/category/add',[BlogController::class,'CategoryAdd'])->name('blog.category.add');
+   Route::post('/category/store',[BlogController::class,'CategoryStore'])->name('blog.category.store');
+   Route::get('/category/delete/{id}',[BlogController::class,'CategoryDelete'])->name('blog.category.delete');
+   
+   //Sub category route List
+   Route::get('/subcategory/view',[BlogController::class,'SubCategoryView'])->name('blog.subcategory.all');
+   Route::get('/subcategory/add',[BlogController::class,'SubCategoryAdd'])->name('blog.subcategory.add');
+   Route::post('/subcategory/store',[BlogController::class,'SubCategoryStore'])->name('blog.subcategory.store');
 
-      //Tag route List
+    //blog route List
+    Route::get('/view',[BlogController::class,'BlogView'])->name('blog.all');
 
-      Route::get('/tag/view',[BlogController::class,'TagView'])->name('tag.all');
+   //Tag route List
+   Route::get('/tag/view',[BlogController::class,'TagView'])->name('tag.all');
+   
 
    // Route::get('/create',[BrandController::class,'BrandCreate'])->name('brand.create');
    // Route::post('/store',[BrandController::class,'BrandStore'])->name('brand.store');

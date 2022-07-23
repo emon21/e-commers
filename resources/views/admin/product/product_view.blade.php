@@ -39,7 +39,7 @@
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td>
                                                     <img src="{{ asset($product->product_thambnil) }}"
-                                                        style="width: 250px;height: 135px;margin: 0 auto;display: flex;"
+                                                        style="width: 220px;height: 60px;margin: 0 auto;display: flex;"
                                                         alt="">
                                                 </td>
                                                 <td>
@@ -66,11 +66,13 @@
 
 
                                                 </td>
-                                                <td> @php
-                                                    $values = explode(',', $product->product_tags_en);
-                                                @endphp
+                                                <td>
+                                                    @php
+                                                        $values = explode(',', $product->product_tags_en);
+                                                    @endphp
+
                                                     @if (in_array("$product->product_tags_en", $values))
-                                                        {{ $product->product_tags_en }}
+                                                        {{-- {{ $product->product_tags_en }} --}}
                                                     @endif
 
                                                     @foreach ($values as $skill)

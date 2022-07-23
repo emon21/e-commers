@@ -12,8 +12,8 @@
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title">Product List</h3>
-                            <a href="{{ route('blog.category.add') }}" class="btn btn-success float-right">Create
-                                Category</a>
+                            <a href="{{ route('blog.subcategory.add') }}" class="btn btn-success float-right">Create
+                                SubCategory</a>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -23,22 +23,29 @@
                                         <tr>
                                             <th>Sl No</th>
                                             <th>Category</th>
+                                            <th>SubCategory Name</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($blog_category as $category)
+                                        @foreach ($subcategories as $subcategory)
                                             <tr>
                                                 <td>{{ $loop->index + 1 }}</td>
-                                                <td>{{ $category->category_name }}</td>
+
+                                                <td>
+                                                    <span class="badge badge-warning">
+                                                        {{ $subcategory->category->category_name }}
+                                                    </span>
+                                                </td>
+
+                                                <td>{{ $subcategory->sub_category_name }}</td>
 
                                                 <td width="20%">
-                                                    <a href="{{ route('edit-product', $category->id) }}"
+                                                    <a href="{{ route('edit-product', $subcategory->id) }}"
                                                         class="btn btn-info" title="Product Edit"><i
                                                             class="fa fa-edit"></i></a>
-
-                                                    <a href="{{ route('blog.category.delete', $category->id) }}"
-                                                        class="btn btn-danger" title="Blog Category Delete"
+                                                    <a href="{{ route('product.delete', $subcategory->id) }}"
+                                                        class="btn btn-danger" title="Product Delete"
                                                         onclick="return confirm('Are You Sure Delete This Items ?')"><i
                                                             class="fa fa-trash"></i></a>
                                                 </td>

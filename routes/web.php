@@ -14,6 +14,7 @@ use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\UserDashboard;
 use App\Http\Controllers\User\WishListController;
 use App\Models\Product;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -219,6 +220,26 @@ Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
 
 // Remove mini cart
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+
+Route::group(['prefix' => 'user','middleware' => ['user','auth'],'namespace' => 'user' ],function(){
+
+   // Add to Wishlist
+   Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
+
+   // Wishlist Product
+   Route::get('/wishlist', [WishListController::class, 'wishlist'])->name('wishlist');
+
+   // Wishlist Product get
+   Route::get('/get-wishlist-product', [WishListController::class, 'GetWishList']);
+
+   // Wishlist Product remove
+   Route::get('/wishlist-remove/{id}', [WishListController::class, 'WishlistRemoveProduct']);
+
+
+
+});
+
+
 
 //brand all route
 Route::prefix('blog')->group(function(){

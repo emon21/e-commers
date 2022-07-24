@@ -4,8 +4,12 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\WishList;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
+use PharIo\Manifest\Author;
 
 class CartController extends Controller
 {
@@ -18,6 +22,7 @@ class CartController extends Controller
             'name' => $request->product_name, 
             'qty' => $request->quantity, 
             'price' => $product->selling_price,
+            'total' => $request->quantity *$product->selling_price,
             'weight' => 1, 
             'options' => [
                'image' => $product->product_thambnail,
@@ -58,11 +63,11 @@ class CartController extends Controller
       return response()->json(array(
          'carts' => $carts,
          'cartQty' => $cartQty,
-          'cartTotal' => $cartTotal,
+         'cartTotal' => $cartTotal,
         // 'cartTotal' => round($cartTotal),
 
       ));
-   }
+   } // end method
 
    /// remove mini cart 
    public function RemoveMiniCart($rowId){
@@ -70,4 +75,32 @@ class CartController extends Controller
       return response()->json(['success' => 'Product Remove from Cart']);
 
    } // end mehtod 
+
+   public function AddToWishlist(Request $request, $product_id){
+      
+      if (Auth::check()) {
+
+         $exists = Wishlist::where('user_id',Auth::id())->where('product_id',$product_id)->first();
+
+         if (!$exists) {
+            Wishlist::insert([
+               'user_id' => Auth::id(), 
+               'product_id' => $product_id, 
+               'created_at' => Carbon::now(), 
+           ]);
+          return response()->json(['success' => 'Successfully Added On Your Wishlist']);
+  
+         }
+         else{
+          return response()->json(['error' => 'This Product has Alreday on Your Wishlist']);
+
+         }
+        
+     }else{
+
+         return response()->json(['error' => 'At First Login Your Account']);
+
+     }
+
+   }
 }

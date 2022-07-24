@@ -12,6 +12,7 @@ use App\Http\Controllers\frontend\IndexController;
 use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\UserDashboard;
+use App\Http\Controllers\User\WishListController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;

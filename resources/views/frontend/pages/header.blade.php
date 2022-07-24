@@ -11,11 +11,32 @@
                         <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
                         <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
                         <li>
-                            @auth
+                            {{-- @auth
                                 <a href="{{ route('user.dashboard') }}"><i class="icon fa fa-user"></i>User Profile</a>
                             @else
                                 <a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a>
-                            @endauth
+                            @endauth --}}
+                            {{-- @if (Auth::check() && Auth::user()->role_as == 'user')
+                                <a href="{{ route('user.dashboard') }}"><i class="icon fa fa-user"></i>User
+                                    Profile</a>
+                            @else
+                                <a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a>
+                            @endif --}}
+
+
+                            @if (Auth::check())
+                                @if ($currentUser->role_as == 'user')
+                                    <a href="{{ route('user.dashboard') }}"><i class="icon fa fa-user"></i>User
+                                        Profile</a>
+                                @endif
+                            @else
+                                <a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a>
+
+                            @endif
+
+
+
+
                         </li>
                     </ul>
                 </div>
@@ -203,7 +224,8 @@
 
                                                                 <a
                                                                     href="{{ url('subcategory/product/' . $sub->id . '/' . $sub->subcategory_slug_en) }}">
-                                                                    <h2 class="title">{{ $sub->subcategory_name_en }}
+                                                                    <h2 class="title">
+                                                                        {{ $sub->subcategory_name_en }}
                                                                     </h2>
                                                                 </a>
                                                                 @php

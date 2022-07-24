@@ -13,6 +13,7 @@ use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\UserDashboard;
 use App\Http\Controllers\User\WishListController;
+use App\Http\Controllers\User\CartPageController;
 use App\Models\Product;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -239,6 +240,12 @@ Route::group(['prefix' => 'user','middleware' => ['user','auth'],'namespace' => 
    Route::get('/wishlist-remove/{id}', [WishListController::class, 'WishlistRemoveProduct']);
 
 });
+
+// My Cart Product
+Route::get('/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
+
+Route::get('/get-cart-product', [CartPageController::class, 'GetCartProduct']);
+
 
 Route::group(['prefix' => 'user',  'middleware' => 'auth'], function()
 {

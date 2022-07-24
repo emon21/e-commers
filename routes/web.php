@@ -221,13 +221,18 @@ Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
 // Remove mini cart
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 
+// Add to Wishlist
+Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
+
+
 Route::group(['prefix' => 'user','middleware' => ['user','auth'],'namespace' => 'user' ],function(){
 
    // Add to Wishlist
-   Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
+   // Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
 
    // Wishlist Product
    Route::get('/wishlist', [WishListController::class, 'wishlist'])->name('wishlist');
+  
 
    // Wishlist Product get
    Route::get('/get-wishlist-product', [WishListController::class, 'GetWishList']);
@@ -237,6 +242,12 @@ Route::group(['prefix' => 'user','middleware' => ['user','auth'],'namespace' => 
 
 
 
+});
+
+Route::group(['prefix' => 'user',  'middleware' => 'auth'], function()
+{
+    //All the routes that belongs to the group goes here
+   //  Route::get('/wishlist', [WishListController::class, 'wishlist'])->name('wishlist');
 });
 
 

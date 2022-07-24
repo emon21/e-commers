@@ -465,9 +465,8 @@
                                                     </li>
 
                                                     <button class="btn btn-primary icon" type="button"
-                                                        title="WishList" id="{{ $product->id }}"
-                                                        onclick="addToWishList(this.id)">
-                                                        <i class="fa fa-heart"></i>
+                                                        title="Wishlist" id="{{ $product->id }}"
+                                                        onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i>
                                                     </button>
 
                                                     <li class="lnk">

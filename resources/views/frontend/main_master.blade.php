@@ -417,25 +417,24 @@
         </script>
 
 
-        //Add wishlist page start//
+        <!--  //Add wishlist page start// -->
 
-        <script>
+        <script type="text/javascript">
             function addToWishList(product_id) {
-
                 $.ajax({
                     type: "POST",
                     dataType: 'json',
                     url: "/add-to-wishlist/" + product_id,
                     success: function(data) {
 
-                        // Start Message 
-                        // Start Message 
+                        //Start Message
                         const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 1500
                         })
+
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
                                 type: 'success',
@@ -443,23 +442,25 @@
                                 title: data.success
                             })
                         } else {
+
                             Toast.fire({
                                 type: 'error',
                                 icon: 'error',
                                 title: data.error
                             })
-                        }
-                        // End Message 
-                    }
-                });
 
+                        }
+
+                        //End Message
+                    }
+                })
             }
         </script>
 
+        <!--  //Add wishlist page end// -->
 
-        //Add wishlist page end//
 
-        //load wishlist product start
+        <!--  //load wishlist product start -->
 
         <script type="text/javascript">
             function Wishlist() {
@@ -508,7 +509,9 @@
             }
             Wishlist();
 
-            // wishlist Remove start
+
+            // wishlist Remove start// 
+
 
             function wishlistRemove(id) {
                 $.ajax({
@@ -549,7 +552,8 @@
             // wishlist Remove End
         </script>
 
-        //load wishlist product end
+        <!-- //load wishlist product end -->
+
 
 </body>
 

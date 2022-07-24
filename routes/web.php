@@ -5,10 +5,16 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\backend\SubCategoryController;
-use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\frontend\IndexController;
+use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\UserDashboard;
+use App\Http\Controllers\User\WishListController;
+use App\Models\Product;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +29,24 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/last', function () {
+
+   $code = 'Emon-3';
+
+   if ($code) {
+       $code_array = explode("-", $code);
+       if ($code_array) {
+           $last_one = array_splice($code_array, -1);
+       }
+       $final_code = implode(" ", $last_one);
+       $final_string = implode(" ", $code_array);
+       $final_code = $final_string .'-'.$final_code+1;
+
+       return $final_code;
+   }
+});
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -134,12 +158,116 @@ Route::get('/sub/sub/delete/{deleteID}',[SubCategoryController::class,'SubSubCat
 });
 
 
-
-
 //Admin Product all route
 Route::prefix('product')->group(function(){
 
    Route::get('/add',[ProductController::class,'AddProduct'])->name('add-product');
+   Route::post('/store',[ProductController::class,'ProductStore'])->name('product-store');
+   Route::get('/manage',[ProductController::class,'ManageProduct'])->name('manage-product');
+   Route::get('/edit/{id}',[ProductController::class,'EditProduct'])->name('edit-product');
+   Route::post('/update',[ProductController::class,'UpdateProduct'])->name('product-update');
+   Route::post('/image/update',[ProductController::class,'MultiImageUpdate'])->name('update-product-image');
+   Route::post('/thambnail/update',[ProductController::class,'ThambnailImageUpdate'])->name('update-product-thambnail');
+   Route::get('/multiimg/delete/{id}',[ProductController::class,'MultiImageDelete'])->name('product.multiimg.delete');
+   Route::get('active/{id}',[ProductController::class,'ProductInactive'])->name('product.active');
+   Route::get('inactive/{id}',[ProductController::class,'ProductActive'])->name('product.inactive');
+   Route::get('delete/{id}',[ProductController::class,'ProductDelete'])->name('product.delete');
+   Route::get('details/{id}',[ProductController::class,'ProductDetails'])->name('product.details');
 
 
 });
+
+
+
+//Admin Slider all route
+Route::prefix('slider')->group(function(){
+
+   Route::get('/view',[SliderController::class,'SliderView'])->name('all.slider');
+   Route::get('/add',[SliderController::class,'SliderAdd'])->name('slider-add');
+   Route::post('/store',[SliderController::class,'SliderStore'])->name('slider-store');
+   Route::get('/edit/{id}',[SliderController::class,'SliderEdit'])->name('slider-edit');
+   Route::post('/update',[SliderController::class,'SliderUpdate'])->name('slider-update');
+   Route::get('delete/{id}',[SliderController::class,'SliderDelete'])->name('slider.delete');
+
+   Route::get('inactive/{id}',[SliderController::class,'SliderInactive'])->name('slider.inactive');
+   Route::get('active/{id}',[SliderController::class,'SliderActive'])->name('slider.active');
+  
+
+});
+
+
+
+//Frontend Product Details
+Route::get('product/details/{id}/{slug}',[IndexController::class,'ProductDetails']);
+
+//Frontend Product Tag
+Route::get('product/tag/{tag}',[IndexController::class,'TagWishProduct']);
+
+//Frontend subcategory wash data
+Route::get('subcategory/product/{subcat_id}/{slug}',[IndexController::class,'SubCatWishProduct']);
+
+//Frontend Sub-subcategory wash data
+Route::get('subsubcategory/product/{subsubcat_id}/{slug}',[IndexController::class,'SubSubCatWishProduct']);
+
+//Product View Modal With Ajax
+Route::get('product/view/modal/{id}',[IndexController::class,'ProductViewAjax']);
+
+//Add To Cart Store Data
+Route::post('/cart/data/store/{id}',[CartController::class,'AddToCart']);
+
+// Get Data from mini cart
+Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
+
+// Remove mini cart
+Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+
+Route::group(['prefix' => 'user','middleware' => ['user','auth'],'namespace' => 'user' ],function(){
+
+   // Add to Wishlist
+   Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
+
+   // Wishlist Product
+   Route::get('/wishlist', [WishListController::class, 'wishlist'])->name('wishlist');
+
+   // Wishlist Product get
+   Route::get('/get-wishlist-product', [WishListController::class, 'GetWishList']);
+
+   // Wishlist Product remove
+   Route::get('/wishlist-remove/{id}', [WishListController::class, 'WishlistRemoveProduct']);
+
+
+
+});
+
+
+
+//brand all route
+Route::prefix('blog')->group(function(){
+  
+   //category route List
+   Route::get('/category/view',[BlogController::class,'CategoryView'])->name('blog.category.all');
+   Route::get('/category/add',[BlogController::class,'CategoryAdd'])->name('blog.category.add');
+   Route::post('/category/store',[BlogController::class,'CategoryStore'])->name('blog.category.store');
+   Route::get('/category/delete/{id}',[BlogController::class,'CategoryDelete'])->name('blog.category.delete');
+   
+   //Sub category route List
+   Route::get('/subcategory/view',[BlogController::class,'SubCategoryView'])->name('blog.subcategory.all');
+   Route::get('/subcategory/add',[BlogController::class,'SubCategoryAdd'])->name('blog.subcategory.add');
+   Route::post('/subcategory/store',[BlogController::class,'SubCategoryStore'])->name('blog.subcategory.store');
+
+    //blog route List
+    Route::get('/view',[BlogController::class,'BlogView'])->name('blog.all');
+
+   //Tag route List
+   Route::get('/tag/view',[BlogController::class,'TagView'])->name('tag.all');
+   
+
+   // Route::get('/create',[BrandController::class,'BrandCreate'])->name('brand.create');
+   // Route::post('/store',[BrandController::class,'BrandStore'])->name('brand.store');
+   // Route::get('/edit/{brand}',[BrandController::class,'BrandEdit'])->name('brand.edit');
+   // Route::post('/update',[BrandController::class,'BrandUpdate'])->name('brand.update');
+   // Route::get('/delete/{id}',[BrandController::class,'BrandDelete'])->name('brand.delete');
+
+});
+
+

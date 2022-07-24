@@ -1,0 +1,97 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Category;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+class CategorySeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+
+      $category_en = [
+         'Fashion','Electronics','Sweet Home','Appliances','Beauty'
+     ];
+
+   //    $category_hin = [
+   //       'फैशन','इलेक्ट्रानिक्स','प्यारा घर','उपकरण','सुंदरता'
+   //   ];
+
+         foreach ($category_en as $value) {
+
+          
+
+        
+            Category::create([
+               
+               'category_name_en' => $value,
+               //'category_name_hin' => $title,
+               'category_slug_en' => Str::slug($value),
+              // 'category_slug_hin' => Str::slug($title),
+               'category_icon' => 'fa fa-list',
+           ]);
+
+       }
+
+
+
+       $category = [
+         ['id' => 1, 'category_name_en' => 'Fashion', 'category_name_hin' => 'फैशन', 'category_slug_en' => Str::slug($value) ],
+        
+     ];
+
+     Category::create($category);
+    }
+
+    [
+      'id' => 3,
+      'category_name_en' => 'Sweet Home',
+      'category_name_hin' => 'प्यारा घर',
+      'category_slug_en' => Str::slug('Fashion'),
+      'category_slug_hin' => Str::slug('प्यारा घर'),
+      'category_icon' => 'fa fa-list',
+   ],
+   [
+      'id' => 4,
+      'category_name_en' => 'Appliances',
+      'category_name_hin' => 'उपकरण',
+      'category_slug_en' => Str::slug('Fashion'),
+      'category_slug_hin' => Str::slug('उपकरण'),
+      'category_icon' => 'fa fa-list',
+   ],
+   [
+      'id' => 5,
+      'category_name_en' => 'Beauty',
+      'category_name_hin' => 'सुंदरता',
+      'category_slug_en' => Str::slug('Beauty'),
+      'category_slug_hin' => Str::slug('सुंदरता'),
+      'category_icon' => 'fa fa-list',
+   ]
+
+    DB::table('users')->insert([
+
+      [
+          'name' => 'Guest',
+          'surname' => 'Guest',
+          'email' => 'guest@domain.com',
+          'phone' => '+777',
+          'password' => bcrypt('password'),
+          'is_admin' => false,
+      ],
+      [
+          'name' => 'Alexander',
+          'surname' => 'Jones',
+          'email' => 'asd@asd.com',
+          'phone' => '+12321321312',
+          'password' => bcrypt('password'),
+          'is_admin' => true,
+      ]
+
+  ]);
+}

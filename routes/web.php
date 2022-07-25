@@ -239,12 +239,28 @@ Route::group(['prefix' => 'user','middleware' => ['user','auth'],'namespace' => 
    // Wishlist Product remove
    Route::get('/wishlist-remove/{id}', [WishListController::class, 'WishlistRemoveProduct']);
 
+   // My Cart Product
+// Route::get('/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
+// //get cart product
+// Route::get('/get-cart-product', [CartPageController::class, 'GetCartProduct']);
+// //remove cart
+// Route::get('/cart-remove/{rowId}', [CartPageController::class, 'RemoveCartProduct']);
+
+
 });
 
-// My Cart Product
-Route::get('/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
 
-Route::get('/get-cart-product', [CartPageController::class, 'GetCartProduct']);
+//My Cart Page All Route
+Route::get('/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
+//get cart product
+Route::get('/user/get-cart-product', [CartPageController::class, 'GetCartProduct']);
+//remove cart
+Route::get('/user/cart-remove/{rowId}', [CartPageController::class, 'RemoveCartProduct']);
+
+Route::get('cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
+Route::get('cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
+
+
 
 
 Route::group(['prefix' => 'user',  'middleware' => 'auth'], function()

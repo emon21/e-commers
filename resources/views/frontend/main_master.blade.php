@@ -562,7 +562,7 @@
             function cart() {
                 $.ajax({
                     type: 'GET',
-                    url: '/get-cart-product/',
+                    url: '/user/get-cart-product/',
                     dataType: 'json',
                     success: function(response) {
 
@@ -571,10 +571,11 @@
                         $.each(response.carts, function(key, value) {
                             rows += `<tr>
                   <td class="col-md-2">
-                        <img src="/${value.options.image}" alt="imga" style="width:60px;height:120px;">
+                        <img src="/${value.options.image}" alt="imga" style="width:50px;height:50px;">
                   </td>
                   <td class="col-md-7">
                         <div class="product-name"><a href="#">${value.name}</a></div>
+                        
 
                         <div class="price">
                            ${value.price}
@@ -585,7 +586,6 @@
                               <td class="col-sm-2">
                                  <strong> ${value.options.color} </strong>
                               </td>
-
                               <td class="col-sm-2">
                                  ${value.options.size == null ?
                                     `<span>....</span>` :
@@ -593,13 +593,25 @@
                                  }
                               </td>
 
-                              <td class="col-md-2">
-                                 <button type="submit" class="btn btn-success btn-sm">+</button>     
-                             <input type="text" value="${value.qty}" min="1" max="100" disabled="" style="width:25px;" >      
-                             <button type="submit" class="btn btn-danger btn-sm">-</button>  
+                              <td class="col-md-4">
+
+                                 ${value.qty  > 1 ?
+
+                                    ` <button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}"onclick="cartDecrement(this.id)">-</button>` : `<button type="submit" class="btn btn-danger btn-sm" disabled id="${value.rowId}"onclick="cartDecrement(this.id)">-</button>`
+                                 
+                                 
+                                 }
+                              
+                             <input type="text" value="${value.qty}" min="1" max="100" disabled="" style="width:25px;" > 
+                             <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}"onclick="cartIncrement(this.id)">+</button>     
+
                                  </td>
+                               
+                                 <td class="col-sm-2">$${value.subtotal}
+                                 </td>
+
                                     <td class="col-md-1 close-btn">
-                                  <button id="${value.id}"onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
+                                  <button id="${value.rowId}"onclick="cartRemove(this.id)"><i class="fa fa-times"></i></button>
                               </td>
                           </tr>`
                         });
@@ -611,17 +623,16 @@
             cart();
 
 
-            // wishlist Remove start// 
+            // Cart Remove start// 
 
-
-            function wishlistRemove(id) {
+            function cartRemove(id) {
                 $.ajax({
                     type: 'GET',
-                    url: '/user/wishlist-remove/' + id,
+                    url: '/user/cart-remove/' + id,
                     dataType: 'json',
                     success: function(data) {
-                        Wishlist();
-
+                        cart();
+                        miniCart();
                         // Start Message 
                         const Toast = Swal.mixin({
                             toast: true,
@@ -649,8 +660,51 @@
                 });
             }
 
+            // Cart Remove End
 
-            // wishlist Remove End
+
+
+
+            //----------------- Cart Increment Start ------------//
+
+            // Cart Increment start// 
+
+            function cartIncrement(rowId) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/cart-increment/' + rowId,
+                    dataType: 'json',
+                    success: function(data) {
+                        cart();
+                        miniCart();
+
+
+                    }
+                });
+            }
+
+            // Cart Increment End
+
+
+            // Cart Decrement start// 
+
+            function cartDecrement(rowId) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/cart-decrement/' + rowId,
+                    dataType: 'json',
+                    success: function(data) {
+                        cart();
+                        miniCart();
+
+
+                    }
+                });
+            }
+
+            // Cart Decrement End
+
+            //----------------- Cart Increment End ------------//
         </script>
 
         <!-- //load My Cart end -->

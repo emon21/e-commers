@@ -14,6 +14,8 @@ use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\UserDashboard;
 use App\Http\Controllers\User\WishListController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\CartController AS Cart;
+use App\Http\Controllers\User\CheckoutController;
 use App\Models\Product;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -261,6 +263,13 @@ Route::get('cart-increment/{rowId}', [CartPageController::class, 'CartIncrement'
 Route::get('cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
 
 
+//Checvkout Route
+
+Route::get('checkout', [Cart::class, 'CheckoutCreate'])->name('checkout');
+
+Route::post('checkout/store', [Cart::class, 'CheckoutStore'])->name('checkout.store');
+
+Route::post('cash/order', [Cart::class, 'cashOrder'])->name('cash.order');
 
 
 Route::group(['prefix' => 'user',  'middleware' => 'auth'], function()

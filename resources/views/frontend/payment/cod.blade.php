@@ -31,8 +31,30 @@
                                         <div class="">
                                             <ul class="nav nav-checkout-progress list-unstyled">
 
-                                                <li>
+                                                @foreach ($carts as $item)
+                                                    <li>
 
+                                                        <strong>Image :</strong>
+                                                        <img src="{{ $item->options->image }}" alt=""
+                                                            style="width:50px;height: ;50px;">
+                                                    </li>
+
+                                                    <li>
+                                                        <strong>Qty :</strong>
+                                                        ({{ $item->qty }})
+                                                        X ({{ $item->price }})
+
+                                                        <strong>Price :</strong>
+                                                        {{ $item->total }}<br>
+                                                        <strong>Color :</strong>
+                                                        {{ $item->options->color }}<br>
+
+                                                        <strong>Size :</strong>
+                                                        {{ $item->options->size }}
+                                                    </li>
+                                                @endforeach
+                                                <hr>
+                                                <li>
 
                                                     <strong>Sub Total :</strong>
                                                     ${{ $cartTotal }}
@@ -40,6 +62,9 @@
                                                     <strong>Grand Total :</strong>
                                                     ${{ $cartTotal }}
                                                 </li>
+
+
+
                                             </ul>
                                         </div>
 
@@ -48,6 +73,8 @@
                             </div>
                             <!-- checkout-progress-sidebar -->
                         </div>
+
+
 
                         <div class="col-md-6">
                             <!-- checkout-progress-sidebar -->

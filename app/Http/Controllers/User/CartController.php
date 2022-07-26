@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -101,7 +102,7 @@ class CartController extends Controller
         // 'order_number' =>$orderid,
         // 'invoice_no' =>$invoice_no,
          'invoice_no' =>'EOS'.mt_rand(100000,999999),
-         // 'order_date' =>$request->id,
+         'order_date' =>Carbon::now(),
          // 'order_month' =>$request->id,
          // 'order_year' =>$request->id,
          // 'confirmed_date' =>$request->id,

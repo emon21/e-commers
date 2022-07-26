@@ -16,6 +16,7 @@ use App\Http\Controllers\User\WishListController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CartController AS Cart;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\AllUserController;
 use App\Models\Product;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -92,8 +93,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
 Route::middleware(['auth'])->group(function (){
 
    Route::get('/user/dashboard', [UserDashboard::class, 'dashboard'])->name('user.dashboard');
-   Route::get('/user/my-order', [UserDashboard::class, 'dashboard'])->name('my.order');
-
+ 
 });
 
 
@@ -252,7 +252,12 @@ Route::group(['prefix' => 'user','middleware' => ['user','auth'],'namespace' => 
 // //remove cart
 // Route::get('/cart-remove/{rowId}', [CartPageController::class, 'RemoveCartProduct']);
 
-Route::get('/order-details', [Cart::class, 'OrderDetails'])->name('order-details');
+// Route::get('/order-details', [Cart::class, 'OrderDetails'])->name('order-details');
+Route::get('/my-order', [AllUserController::class, 'MyOrder'])->name('my.order');
+Route::get('/order-details/{order_id}', [AllUserController::class, 'OrderDetails']);
+
+//invoice generate
+Route::get('/invoice_download/{order_id}', [AllUserController::class, 'InvoiceDownload']);
 
 });
 

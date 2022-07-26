@@ -1,5 +1,7 @@
 @extends('frontend.main_master')
-
+@section('title')
+    My Order
+@endsection
 @section('content')
     {{-- @php
     $user = Auth::user();
@@ -15,124 +17,111 @@
                 </div>
                 <!-- end col-sm-2 -->
 
-                <div class="col-sm-10">
-                    <br>
-                    <div class="sign-in-page mt-4">
-                        <h4 class="">Change Password</h4>
-                        <hr>
+                <div class="col-md-10">
 
-                        <form action="{{ route('user.password.update') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="box">
-                                <div class="box-header">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
 
-                                </div>
-                                <div class="box-body">
+                                <tr style="background: #e2e2e2;">
+                                    <td class="col-md-1">
+                                        <label for=""> Date</label>
+                                    </td>
 
-                                    <div class="box-body">
+                                    <td class="col-md-3">
+                                        <label for=""> Total</label>
+                                    </td>
 
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="form-group col-sm-8">
-                                                    <label>Current Password</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <span class="input-group-text  bg-transparent text-white"><i
-                                                                    class="fa fa-lock"></i></span>
-                                                        </div>
-                                                        <input type="text"
-                                                            class="form-control pl-15 bg-transparent text-white plc-white @error('current_password') is-invalid @enderror"
-                                                            name="current_password" autocomplete="current_password"
-                                                            placeholder="Enter Current Password">
-                                                    </div>
-                                                    @error('current_password')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="form-group col-sm-8">
-                                                    <label for="new_password">New Password</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <span class="input-group-text  bg-transparent text-white"><i
-                                                                    class="fa fa-lock"></i></span>
-                                                        </div>
-                                                        <input type="text"
-                                                            class="form-control @error('current_password') is-invalid @enderror"
-                                                            name="new_password" autocomplete="new_password"
-                                                            placeholder="Enter New Password"
-                                                            value="{{ old('new_password') }}" id="new_password">
-                                                    </div>
-                                                    @error('new_password')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="form-group col-sm-8">
-                                                    <label for="confirm_password">Confirm Password</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <span class="input-group-text  bg-transparent text-white"><i
-                                                                    class="fa fa-lock"></i></span>
-                                                        </div>
-                                                        <input type="text"
-                                                            class="form-control pl-15 bg-transparent text-white plc-white @error('confirm_password') is-invalid @enderror"
-                                                            name="confirm_password" autocomplete="confirm_password"
-                                                            placeholder="Enter Confirm Password"
-                                                            value="{{ old('confirm_password') }}">
-                                                    </div>
-                                                    @error('confirm_password')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex justify-content-center float-left">
-                                            <button type="submit" class="btn btn-rounded btn-success">Update
-                                                Password</button>
-
-                                        </div>
+                                    <td class="col-md-3">
+                                        <label for=""> Payment</label>
+                                    </td>
 
 
-                                    </div>
+                                    <td class="col-md-2">
+                                        <label for=""> Invoice</label>
+                                    </td>
 
-                                </div>
+                                    <td class="col-md-2">
+                                        <label for=""> Order</label>
+                                    </td>
 
-                                <!-- /.box-body -->
-                            </div>
+                                    <td class="col-md-1">
+                                        <label for=""> Action </label>
+                                    </td>
 
-                            <!-- /.box -->
-
-                        </form>
-                        <!-- /.form group -->
+                                </tr>
 
 
+                                @foreach ($orders as $order)
+                                    <tr>
+                                        <td class="col-md-1">
+                                            <label for=""> {{ $order->order_date }}</label>
+                                        </td>
+
+                                        <td class="col-md-3">
+                                            <label for=""> ${{ $order->amount }}</label>
+                                        </td>
+
+
+                                        <td class="col-md-3">
+                                            <label for=""> {{ $order->payment_method }}</label>
+                                        </td>
+
+                                        <td class="col-md-2">
+                                            <label for=""> {{ $order->invoice_no }}</label>
+                                        </td>
+
+                                        <td class="col-md-2">
+                                            <label for="">
+                                                <span class="badge badge-pill badge-warning"
+                                                    style="background: #418DB9;">{{ $order->status }} </span>
+
+                                            </label>
+                                        </td>
+
+                                        <td width="25%">
+                                            <a href="{{ url('user/order-details', $order->id) }}"
+                                                class="btn btn-sm btn-primary"><i class="fa fa-eye"></i>
+                                                View</a>
+
+                                            <a href="{{ url('user/invoice_download', $order->id) }}"
+                                                class="btn btn-sm btn-danger"><i class="fa fa-download"
+                                                    style="color: white;margin-top:5px;"></i> Invoice </a>
+
+                                        </td>
+
+                                    </tr>
+                                @endforeach
+
+
+
+
+
+                            </tbody>
+
+                        </table>
 
                     </div>
+                    <!-- end col-sm-2 -->
 
                 </div>
-                <!-- end col-sm-2 -->
-
+                <!-- end row -->
             </div>
-            <!-- end row -->
+            <!-- end container -->
         </div>
-        <!-- end container -->
-    </div>
-    <!-- end body-content -->
-@endsection
+        <!-- end body-content -->
+    @endsection
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        // alert('#showImage');
-        $('#image').change(function(e) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#showImage').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(e.target.files['0']);
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // alert('#showImage');
+            $('#image').change(function(e) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#showImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files['0']);
+            });
         });
-    });
-</script>
+    </script>

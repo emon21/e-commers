@@ -30,7 +30,7 @@ class CreateOrdersTable extends Migration
             $table->float('amount',8,2)->nullable();
             $table->string('order_number')->nullable();
             $table->string('invoice_no')->nullable();
-            // $table->string('order_date')->nullable();
+            $table->string('order_date')->nullable();
             // $table->string('order_month')->nullable();
             // $table->string('order_year')->nullable();
             // $table->string('confirmed_date')->nullable();

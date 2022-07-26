@@ -18,6 +18,8 @@ class ProductFactory extends Factory
     public function definition()
     {
       $product_name =  $this->faker->name();
+     // $id = rand(30, 600);
+    //  $image = 'https://picsum.photos/id/' . $id . '/700/600';
       return [
 
          'brand_id' =>  Brand::inRandomOrder()->value('id'),

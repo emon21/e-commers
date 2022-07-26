@@ -87,13 +87,17 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
 });
 
 
-// ===================================  User Route  ===================================
+// ===================================  User Route  Start ===================================
 
 Route::middleware(['auth'])->group(function (){
 
    Route::get('/user/dashboard', [UserDashboard::class, 'dashboard'])->name('user.dashboard');
+   Route::get('/user/my-order', [UserDashboard::class, 'dashboard'])->name('my.order');
 
 });
+
+
+// ===================================  User Route End ===================================
 
 Route::get('/',[IndexController::class,'index']);
 Route::get('/user',[IndexController::class,'UserLogout'])->name('user.logout');
@@ -248,6 +252,7 @@ Route::group(['prefix' => 'user','middleware' => ['user','auth'],'namespace' => 
 // //remove cart
 // Route::get('/cart-remove/{rowId}', [CartPageController::class, 'RemoveCartProduct']);
 
+Route::get('/order-details', [Cart::class, 'OrderDetails'])->name('order-details');
 
 });
 

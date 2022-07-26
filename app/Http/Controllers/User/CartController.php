@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Mail;
 
 class CartController extends Controller
 {
@@ -53,6 +54,7 @@ class CartController extends Controller
       $carts = Cart::content();
       $cartQty = Cart::count();
       $cartTotal = Cart::total();
+      //return $carts;
        
       $data = array();
       $data['shipping_name'] = $request->shipping_name;
@@ -78,7 +80,12 @@ class CartController extends Controller
 
     public function cashOrder(Request $request)
     {
-      $order_id = Order::insertGetId([
+      
+      // $info = 'order';
+      // $invoice_no = $info.'-'.rand(100000,999999);
+     // return $invoice_no;
+       $cartTotal = Cart::total();
+       $order_id = Order::insertGetId([
          'user_id' =>Auth::id(),
          'name' =>$request->name,
          'email' =>$request->email,
@@ -88,27 +95,74 @@ class CartController extends Controller
          'notes' =>$request->notes,
          'payment_type' =>'cod',
          'payment_method' =>'cod',
-         'transaction' =>$request->id,
-         'currency' =>$request->id,
-         'amount' =>$request->id,
-         'order_number' =>$request->id,
-         'invoice_no' =>$request->id,
-         'order_date' =>$request->id,
-         'order_month' =>$request->id,
-         'order_year' =>$request->id,
-         'confirmed_date' =>$request->id,
-         'processing_date' =>$request->id,
-         'picked_date' =>$request->id,
-         'shipped_date' =>$request->id,
-         'delivered_date' =>$request->id,
-         'cancel_date' =>$request->id,
-         'return_date' =>$request->id,
-         'return_reason' =>$request->id,
-         'status' =>$request->id,
+        // 'transaction_id' =>$value->subtotal,
+        // 'currency' =>$request->id,
+         'amount' =>$cartTotal,
+        // 'order_number' =>$orderid,
+        // 'invoice_no' =>$invoice_no,
+         'invoice_no' =>'EOS'.mt_rand(100000,999999),
+         // 'order_date' =>$request->id,
+         // 'order_month' =>$request->id,
+         // 'order_year' =>$request->id,
+         // 'confirmed_date' =>$request->id,
+         // 'processing_date' =>$request->id,
+         // 'picked_date' =>$request->id,
+         // 'shipped_date' =>$request->id,
+         // 'delivered_date' =>$request->id,
+         // 'cancel_date' =>$request->id,
+         // 'return_date' =>$request->id,
+         // 'return_reason' =>$request->id,
+         'status' =>'Pending',
 
       ]);
 
+      //invoice send by mail
+      $invoice = Order::findOrFail($order_id);
+     // return $invoice;
+      $data = [
+         'invoice_no' => $invoice->invoice_no,
+         'amount' =>$invoice->amount,
+         'name' => $invoice->name,
+          'email' => $invoice->email,
+      ];
+
+      Mail::to($request->email)->send(new OrderMail($data));
+   
+
+     $carts = Cart::content();
+     foreach($carts as $cart){
+      OrderItem::insert([
+         'order_id' =>$order_id,
+         'product_id' =>$cart->id,
+         'color' =>$cart->options->color,
+         'size' =>$cart->options->size,
+         'qty' =>$cart->qty,
+         'price' =>$cart->price,
+        
+      ]);
+     }
+    
+     // return $invoice_no;
+     // return $carts;
+     // dd($request->all());
+     
+
+      Cart::destroy();
+
+      $notification = array(
+         'message' => 'Your Order Place Successfully',
+         'alert-type' => 'success',
+      );
+      return redirect()->route('order-details')->with($notification);
 
 
+
+    }
+
+    public function OrderDetails()
+    {
+      $order = OrderItem::with('order','product')->get();
+     // return $order;
+      return view('frontend.order.order_details',compact('order'));
     }
 }

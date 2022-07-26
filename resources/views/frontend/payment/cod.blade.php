@@ -34,7 +34,7 @@
                                                 @foreach ($carts as $item)
                                                     <li>
 
-                                                        <strong>Image :</strong>
+                                                        <strong>Image22 :</strong>
                                                         <img src="{{ $item->options->image }}" alt=""
                                                             style="width:50px;height: ;50px;">
                                                     </li>

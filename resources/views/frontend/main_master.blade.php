@@ -83,7 +83,7 @@
 
     <!-- Toast Notification Alert -->
     <script src="{{ asset('toastr') }}/toastr.min.js"></script>
-    {{-- {!! Toastr::message() !!} --}}
+    {!! Toastr::message() !!}
     <script>
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}"

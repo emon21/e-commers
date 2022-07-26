@@ -236,8 +236,11 @@ class ProductController extends Controller
    {
       $pro_id = $request->id;
       $oldImg = $request->old_img;
-
-      unlink($oldImg);
+     // unlink($oldImg);
+      if(file_exists($oldImg)){
+         unlink($oldImg);
+            }
+            
 
       $image = $request->file('feature_img');
       $save_url = time() . '.' .$image->getClientOriginalextension();
@@ -296,11 +299,17 @@ class ProductController extends Controller
    public function ProductDelete($id)
    {
       $product = Product::findOrFail($id);
-      unlink($product->product_thambnil);
+
+      if(file_exists($product->product_thambnil)){
+         unlink($product->product_thambnil);
+            }
+
+    //  unlink($product->product_thambnil);
       Product::findOrFail($id)->delete();
 
       $images = MultiImg::where('product_id',$id)->get();
       foreach ($images as $img) {
+
          unlink($img->photo_name);
          MultiImg::where('product_id',$id)->delete();
       }

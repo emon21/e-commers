@@ -270,8 +270,8 @@ Route::get('/user/get-cart-product', [CartPageController::class, 'GetCartProduct
 Route::get('/user/cart-remove/{rowId}', [CartPageController::class, 'RemoveCartProduct']);
 
 Route::get('cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
-Route::get('cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
 
+Route::get('cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
 
 //Checvkout Route
 
@@ -304,8 +304,8 @@ Route::prefix('blog')->group(function(){
    Route::get('/subcategory/add',[BlogController::class,'SubCategoryAdd'])->name('blog.subcategory.add');
    Route::post('/subcategory/store',[BlogController::class,'SubCategoryStore'])->name('blog.subcategory.store');
 
-    //blog route List
-    Route::get('/view',[BlogController::class,'BlogView'])->name('blog.all');
+    //Post route List
+    Route::get('/view',[BlogController::class,'PostView'])->name('post.all');
 
    //Tag route List
    Route::get('/tag/view',[BlogController::class,'TagView'])->name('tag.all');

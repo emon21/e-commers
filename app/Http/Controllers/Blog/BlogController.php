@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog\BlogCategory;
+use App\Models\Blog\BlogPost;
 use App\Models\Blog\BlogSubCategory;
 use Illuminate\Http\Request;
 
@@ -108,7 +109,8 @@ class BlogController extends Controller
 
    public function PostView()
    {
-      
+      $posts = BlogPost::latest()->get();
+      return view('admin.blog.post.post_view',compact('posts'));
    }
    
      // ===================== Post function End =====================

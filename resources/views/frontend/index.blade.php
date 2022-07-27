@@ -7,7 +7,8 @@
 <div class="body-content outer-top-xs" id="top-banner-and-menu">
     <div class="container">
         <div class="row">
-            <!-- ============================================== SIDEBAR ============================================== -->
+
+            <!-- ================================== SIDEBAR ================================== -->
             <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
 
                 <!-- ================================== TOP NAVIGATION ================================== -->
@@ -16,50 +17,53 @@
                 <!-- ================================== TOP NAVIGATION : END ================================== -->
 
 
-                <!-- ============================================== HOT DEALS ============================================== -->
+                <!-- ================================== HOT DEALS ================================== -->
                 @include('frontend.sidebar.hot_deals')
-                <!-- ============================================== HOT DEALS: END ============================================== -->
+                <!-- ================================== HOT DEALS: END ================================== -->
 
-                <!-- ============================================== SPECIAL OFFER ============================================== -->
+
+                <!-- ================================== SPECIAL OFFER ================================== -->
                 @include('frontend.sidebar.special_offer')
 
 
                 <!-- /.sidebar-widget -->
-                <!-- ============================================== SPECIAL OFFER : END ============================================== -->
+                <!-- ================================== SPECIAL OFFER : END ================================== -->
 
-                <!-- ============================================== PRODUCT TAGS ============================================== -->
+                <!-- ================================== PRODUCT TAGS ================================== -->
                 @include('frontend.sidebar.product_tags')
 
                 <!-- /.sidebar-widget -->
-                <!-- ============================================== PRODUCT TAGS : END ============================================== -->
-                <!-- ============================================== SPECIAL DEALS ============================================== -->
+                <!-- ================================== PRODUCT TAGS : END ================================== -->
+
+                <!-- ================================== SPECIAL DEALS ================================== -->
                 @include('frontend.sidebar.special_deals')
 
 
                 <!-- /.sidebar-widget -->
-                <!-- ============================================== SPECIAL DEALS : END ============================================== -->
-                <!-- ============================================== NEWSLETTER ============================================== -->
+                <!-- ================================== SPECIAL DEALS : END ================================== -->
+
+                <!-- ================================== NEWSLETTER ================================== -->
 
                 <!-- /.sidebar-widget -->
-                <!-- ============================================== NEWSLETTER: END ============================================== -->
+                <!-- ================================== NEWSLETTER: END ================================== -->
                 @include('frontend.sidebar.newsletter')
 
-                <!-- ============================================== Testimonials============================================== -->
+                <!-- ================================== Testimonials================================== -->
                 @include('frontend.sidebar.testimonial')
 
 
-                <!-- ============================================== Testimonials: END ============================================== -->
+                <!-- ================================== Testimonials: END ================================== -->
 
                 <div class="home-banner">
                     <img src="{{ asset('frontend') }}/assets/images/banners/LHS-banner.jpg" alt="Image">
                 </div>
             </div>
             <!-- /.sidemenu-holder -->
-            <!-- ============================================== SIDEBAR : END ============================================== -->
+            <!-- ================================== SIDEBAR : END ================================== -->
 
-            <!-- ============================================== CONTENT ============================================== -->
+            <!-- ================================== CONTENT ================================== -->
             <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
-                <!-- ========================================== SECTION – HERO ========================================= -->
+                <!-- ================================== SECTION – HERO ================================== -->
 
                 <div id="hero">
                     <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
@@ -87,9 +91,9 @@
                     <!-- /.owl-carousel -->
                 </div>
 
-                <!-- ========================================= SECTION – HERO : END ========================================= -->
+                <!-- ================================== SECTION – HERO : END ================================== -->
 
-                <!-- ============================================== INFO BOXES ============================================== -->
+                <!-- ================================== INFO BOXES ================================== -->
                 <div class="info-boxes wow fadeInUp">
                     <div class="info-boxes-inner">
                         <div class="row">
@@ -135,8 +139,10 @@
 
                 </div>
                 <!-- /.info-boxes -->
-                <!-- ============================================== INFO BOXES : END ============================================== -->
-                <!-- ============================================== SCROLL TABS ============================================== -->
+                <!-- ================================== INFO BOXES : END ================================== -->
+
+
+                <!-- ================================== SCROLL TABS ================================== -->
                 <div id="product-tabs-slider" class="scroll-tabs outer-top-vs wow fadeInUp">
                     <div class="more-info-tab clearfix ">
                         <h3 class="new-product-title pull-left">New Products</h3>
@@ -224,22 +230,32 @@
                                                         <div class="action">
                                                             <ul class="list-unstyled">
                                                                 <li class="add-cart-button btn-group">
-                                                                    <button data-toggle="tooltip"
-                                                                        class="btn btn-primary icon" type="button"
-                                                                        title="Add Cart"> <i
-                                                                            class="fa fa-shopping-cart"></i> </button>
-                                                                    <button class="btn btn-primary cart-btn"
-                                                                        type="button">Add to cart</button>
+
+                                                                    <button class="btn btn-primary icon" type="button"
+                                                                        title="Add Cart" data-toggle="modal"
+                                                                        data-target="#exampleModal"
+                                                                        id="{{ $product->id }}"
+                                                                        onclick="productView(this.id)">
+                                                                        <i class="fa fa-shopping-cart"></i>
+                                                                    </button>
+
+
                                                                 </li>
-                                                                <li class="lnk wishlist"> <a data-toggle="tooltip"
-                                                                        class="add-to-cart" href="detail.html"
-                                                                        title="Wishlist"> <i
-                                                                            class="icon fa fa-heart"></i>
-                                                                    </a> </li>
-                                                                <li class="lnk"> <a data-toggle="tooltip"
-                                                                        class="add-to-cart" href="detail.html"
-                                                                        title="Compare"> <i class="fa fa-signal"
-                                                                            aria-hidden="true"></i> </a> </li>
+
+                                                                <button class="btn btn-primary icon" type="button"
+                                                                    title="Wishlist" id="{{ $product->id }}"
+                                                                    onclick="addToWishList(this.id)"> <i
+                                                                        class="fa fa-heart"></i>
+                                                                </button>
+
+                                                                <li class="lnk">
+                                                                    <a data-toggle="tooltip" class="add-to-cart"
+                                                                        href="detail.html" title="Compare">
+                                                                        <i class="fa fa-signal"
+                                                                            aria-hidden="true"></i>
+                                                                    </a>
+                                                                </li>
+
                                                             </ul>
                                                         </div>
                                                         <!-- /.action -->
@@ -311,23 +327,34 @@
                                                             <div class="action">
                                                                 <ul class="list-unstyled">
                                                                     <li class="add-cart-button btn-group">
-                                                                        <button data-toggle="tooltip"
-                                                                            class="btn btn-primary icon"
-                                                                            type="button" title="Add Cart"> <i
-                                                                                class="fa fa-shopping-cart"></i>
+
+                                                                        <button class="btn btn-primary icon"
+                                                                            type="button" title="Add Cart"
+                                                                            data-toggle="modal"
+                                                                            data-target="#exampleModal"
+                                                                            id="{{ $product->id }}"
+                                                                            onclick="productView(this.id)">
+                                                                            <i class="fa fa-shopping-cart"></i>
                                                                         </button>
-                                                                        <button class="btn btn-primary cart-btn"
-                                                                            type="button">Add to cart</button>
+
+
                                                                     </li>
-                                                                    <li class="lnk wishlist"> <a data-toggle="tooltip"
-                                                                            class="add-to-cart" href="detail.html"
-                                                                            title="Wishlist"> <i
-                                                                                class="icon fa fa-heart"></i>
-                                                                        </a> </li>
-                                                                    <li class="lnk"> <a data-toggle="tooltip"
-                                                                            class="add-to-cart" href="detail.html"
-                                                                            title="Compare"> <i class="fa fa-signal"
-                                                                                aria-hidden="true"></i> </a> </li>
+
+                                                                    <button class="btn btn-primary icon"
+                                                                        type="button" title="Wishlist"
+                                                                        id="{{ $product->id }}"
+                                                                        onclick="addToWishList(this.id)"> <i
+                                                                            class="fa fa-heart"></i>
+                                                                    </button>
+
+                                                                    <li class="lnk">
+                                                                        <a data-toggle="tooltip" class="add-to-cart"
+                                                                            href="detail.html" title="Compare">
+                                                                            <i class="fa fa-signal"
+                                                                                aria-hidden="true"></i>
+                                                                        </a>
+                                                                    </li>
+
                                                                 </ul>
                                                             </div>
                                                             <!-- /.action -->
@@ -359,9 +386,9 @@
                     <!-- /.tab-content -->
                 </div>
                 <!-- /.scroll-tabs -->
-                <!-- ============================================== SCROLL TABS : END ============================================== -->
+                <!-- ================================== SCROLL TABS : END ================================== -->
 
-                <!-- ============================================== WIDE PRODUCTS ============================================== -->
+                <!-- ================================== WIDE PRODUCTS ================================== -->
                 <div class="wide-banners wow fadeInUp outer-bottom-xs">
                     <div class="row">
                         <div class="col-md-7 col-sm-7">
@@ -387,9 +414,9 @@
                 </div>
                 <!-- /.wide-banners -->
 
-                <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
+                <!-- ================================== WIDE PRODUCTS : END ================================== -->
 
-                <!-- ============================================== FEATURED PRODUCTS ============================================== -->
+                <!-- ================================== FEATURED PRODUCTS ================================== -->
                 <section class="section featured-product wow fadeInUp">
                     <h3 class="section-title">Featured products</h3>
                     <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
@@ -563,21 +590,28 @@
                                         <div class="cart clearfix animate-effect">
                                             <div class="action">
                                                 <ul class="list-unstyled">
+
                                                     <li class="add-cart-button btn-group">
-                                                        <button data-toggle="tooltip" class="btn btn-primary icon"
-                                                            type="button" title="Add Cart"> <i
-                                                                class="fa fa-shopping-cart"></i> </button>
-                                                        <button class="btn btn-primary cart-btn" type="button">Add to
-                                                            cart</button>
+                                                        <button class="btn btn-primary icon" type="button"
+                                                            title="Add Cart" data-toggle="modal"
+                                                            data-target="#exampleModal" id="{{ $product->id }}"
+                                                            onclick="productView(this.id)">
+                                                            <i class="fa fa-shopping-cart"></i>
+                                                        </button>
                                                     </li>
-                                                    <li class="lnk wishlist"> <a data-toggle="tooltip"
-                                                            class="add-to-cart" href="detail.html" title="Wishlist">
-                                                            <i class="icon fa fa-heart"></i>
-                                                        </a> </li>
-                                                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
-                                                            href="detail.html" title="Compare"> <i
-                                                                class="fa fa-signal" aria-hidden="true"></i> </a>
+
+                                                    <button class="btn btn-primary icon" type="button"
+                                                        title="Wishlist" id="{{ $product->id }}"
+                                                        onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i>
+                                                    </button>
+
+                                                    <li class="lnk">
+                                                        <a data-toggle="tooltip" class="add-to-cart"
+                                                            href="detail.html" title="Compare">
+                                                            <i class="fa fa-signal" aria-hidden="true"></i>
+                                                        </a>
                                                     </li>
+
                                                 </ul>
                                             </div>
                                             <!-- /.action -->
@@ -630,6 +664,8 @@
 
 
                 <!-- ============================================== Brand PRODUCTS ============================================== -->
+
+                <h4>Brand Wish Product</h4>
                 <section class="section featured-product wow fadeInUp">
                     <h3 class="section-title">{{ $skip_brand->brand_name_en }}</h3>
                     <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
@@ -693,20 +729,29 @@
                                             <div class="action">
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
-                                                        <button data-toggle="tooltip" class="btn btn-primary icon"
-                                                            type="button" title="Add Cart"> <i
-                                                                class="fa fa-shopping-cart"></i> </button>
-                                                        <button class="btn btn-primary cart-btn" type="button">Add to
-                                                            cart</button>
+
+                                                        <button class="btn btn-primary icon" type="button"
+                                                            title="Add Cart" data-toggle="modal"
+                                                            data-target="#exampleModal" id="{{ $product->id }}"
+                                                            onclick="productView(this.id)">
+                                                            <i class="fa fa-shopping-cart"></i>
+                                                        </button>
+
+
                                                     </li>
-                                                    <li class="lnk wishlist"> <a data-toggle="tooltip"
-                                                            class="add-to-cart" href="detail.html" title="Wishlist">
-                                                            <i class="icon fa fa-heart"></i>
-                                                        </a> </li>
-                                                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
-                                                            href="detail.html" title="Compare"> <i
-                                                                class="fa fa-signal" aria-hidden="true"></i> </a>
+
+                                                    <button class="btn btn-primary icon" type="button"
+                                                        title="Wishlist" id="{{ $product->id }}"
+                                                        onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i>
+                                                    </button>
+
+                                                    <li class="lnk">
+                                                        <a data-toggle="tooltip" class="add-to-cart"
+                                                            href="detail.html" title="Compare">
+                                                            <i class="fa fa-signal" aria-hidden="true"></i>
+                                                        </a>
                                                     </li>
+
                                                 </ul>
                                             </div>
                                             <!-- /.action -->
@@ -1017,132 +1062,31 @@
                     <h3 class="section-title">latest form blog</h3>
                     <div class="blog-slider-container outer-top-xs">
                         <div class="owl-carousel blog-slider custom-carousel">
-                            <div class="item">
-                                <div class="blog-post">
-                                    <div class="blog-post-image">
-                                        <div class="image"> <a href="blog.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/blog-post/post1.jpg"
-                                                    alt=""></a>
+
+                            @foreach ($posts as $post)
+                                <div class="item">
+                                    <div class="blog-post">
+                                        <div class="blog-post-image">
+                                            <div class="image"> <a href="blog.html"><img
+                                                        src="{{ asset($post->blog_img) }}" alt=""></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- /.blog-post-image -->
+                                        <!-- /.blog-post-image -->
 
-                                    <div class="blog-post-info text-left">
-                                        <h3 class="name"><a href="#">Voluptatem accusantium doloremque
-                                                laudantium</a></h3>
-                                        <span class="info">By Jone Doe &nbsp;|&nbsp; 21 March 2016 </span>
-                                        <p class="text">Sed quia non numquam eius modi tempora incidunt ut labore et
-                                            dolore magnam aliquam quaerat voluptatem.</p>
-                                        <a href="#" class="lnk btn btn-primary">Read more</a>
-                                    </div>
-                                    <!-- /.blog-post-info -->
-
-                                </div>
-                                <!-- /.blog-post -->
-                            </div>
-                            <!-- /.item -->
-
-                            <div class="item">
-                                <div class="blog-post">
-                                    <div class="blog-post-image">
-                                        <div class="image"> <a href="blog.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/blog-post/post2.jpg"
-                                                    alt=""></a>
+                                        <div class="blog-post-info text-left">
+                                            <h3 class="name"><a href="#">{{ $post->blog_title }}</a></h3>
+                                            <span class="info">By Jone Doe &nbsp;|&nbsp; 21 March 2016 </span>
+                                            <p class="text">{!! $post->blog_description !!}</p>
+                                            <a href="#" class="lnk btn btn-primary">Read more</a>
                                         </div>
-                                    </div>
-                                    <!-- /.blog-post-image -->
+                                        <!-- /.blog-post-info -->
 
-                                    <div class="blog-post-info text-left">
-                                        <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
-                                                pariatur</a></h3>
-                                        <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                        <p class="text">Sed quia non numquam eius modi tempora incidunt ut labore et
-                                            dolore magnam aliquam quaerat voluptatem.</p>
-                                        <a href="#" class="lnk btn btn-primary">Read more</a>
                                     </div>
-                                    <!-- /.blog-post-info -->
-
+                                    <!-- /.blog-post -->
                                 </div>
-                                <!-- /.blog-post -->
-                            </div>
-                            <!-- /.item -->
+                                <!-- /.item -->
+                            @endforeach
 
-                            <!-- /.item -->
-
-                            <div class="item">
-                                <div class="blog-post">
-                                    <div class="blog-post-image">
-                                        <div class="image"> <a href="blog.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/blog-post/post1.jpg"
-                                                    alt=""></a>
-                                        </div>
-                                    </div>
-                                    <!-- /.blog-post-image -->
-
-                                    <div class="blog-post-info text-left">
-                                        <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
-                                                pariatur</a></h3>
-                                        <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                        <p class="text">Sed ut perspiciatis unde omnis iste natus error sit
-                                            voluptatem accusantium</p>
-                                        <a href="#" class="lnk btn btn-primary">Read more</a>
-                                    </div>
-                                    <!-- /.blog-post-info -->
-
-                                </div>
-                                <!-- /.blog-post -->
-                            </div>
-                            <!-- /.item -->
-
-                            <div class="item">
-                                <div class="blog-post">
-                                    <div class="blog-post-image">
-                                        <div class="image"> <a href="blog.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/blog-post/post2.jpg"
-                                                    alt=""></a>
-                                        </div>
-                                    </div>
-                                    <!-- /.blog-post-image -->
-
-                                    <div class="blog-post-info text-left">
-                                        <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
-                                                pariatur</a></h3>
-                                        <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                        <p class="text">Sed ut perspiciatis unde omnis iste natus error sit
-                                            voluptatem accusantium</p>
-                                        <a href="#" class="lnk btn btn-primary">Read more</a>
-                                    </div>
-                                    <!-- /.blog-post-info -->
-
-                                </div>
-                                <!-- /.blog-post -->
-                            </div>
-                            <!-- /.item -->
-
-                            <div class="item">
-                                <div class="blog-post">
-                                    <div class="blog-post-image">
-                                        <div class="image"> <a href="blog.html"><img
-                                                    src="{{ asset('frontend') }}/assets/images/blog-post/post1.jpg"
-                                                    alt=""></a>
-                                        </div>
-                                    </div>
-                                    <!-- /.blog-post-image -->
-
-                                    <div class="blog-post-info text-left">
-                                        <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
-                                                pariatur</a></h3>
-                                        <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                        <p class="text">Sed ut perspiciatis unde omnis iste natus error sit
-                                            voluptatem accusantium</p>
-                                        <a href="#" class="lnk btn btn-primary">Read more</a>
-                                    </div>
-                                    <!-- /.blog-post-info -->
-
-                                </div>
-                                <!-- /.blog-post -->
-                            </div>
-                            <!-- /.item -->
 
                         </div>
                         <!-- /.owl-carousel -->

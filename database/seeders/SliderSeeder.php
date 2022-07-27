@@ -17,12 +17,21 @@ class SliderSeeder extends Seeder
       $slider = [
 
                [
-                     'slider_img' => 'upload/slider/default.jpg',
+                     'slider_img' => 'upload/slider/01.jpg',
                      'title' => 'this is slider desc',
                      'description' => 'this is slider desc',
                      'status' => '1'
 
-                  ]
+               ],
+
+               
+               [
+                  'slider_img' => 'upload/slider/02.jpg',
+                  'title' => 'this is slider desc',
+                  'description' => 'this is slider desc',
+                  'status' => '1'
+
+               ]
 
           ];
 

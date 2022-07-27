@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog\BlogPost;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\MultiImg;
@@ -42,7 +43,12 @@ class IndexController extends Controller
 
      // $subcategories = SubCategory::Where('category_id', $category->id)->orderBy('subcategory_name_en', 'ASC')->get();
      // $subsubcategories = SubSubCategory::Where('subcategory_id', $sub->id)->orderBy('sub_subcategory_name_en', 'ASC') ->get();
-      return view('frontend.index',compact('categories','sliders','products','featured','hot_deals','special_offer','special_deals','brands','new_arrivals','skip_category','skip_product','skip_brand','brand_product'));
+
+     //blog
+     $posts = BlogPost::with('category')->where('status',1)->orderBy('id','desc')->get();
+
+
+      return view('frontend.index',compact('categories','sliders','products','featured','hot_deals','special_offer','special_deals','brands','new_arrivals','skip_category','skip_product','skip_brand','brand_product','posts'));
     }
 
     

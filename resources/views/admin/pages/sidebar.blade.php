@@ -54,8 +54,8 @@ $route = Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ $route == 'all.category' ? 'active' : '' }}"><a
-                            href="{{ route('all.category') }}"><i class="ti-more"></i>All Category</a></li>
+                    <li class="{{ $route == 'all.category' ? 'active' : '' }}"><a href="{{ route('all.category') }}"><i
+                                class="ti-more"></i>All Category</a></li>
 
                     <li class="{{ $route == 'all.subcategory' ? 'active' : '' }}"><a
                             href="{{ route('all.subcategory') }}"><i class="ti-more"></i>All SubCategory</a></li>
@@ -74,8 +74,8 @@ $route = Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ $route == 'add-product' ? 'active' : '' }}"><a
-                            href="{{ route('add-product') }}"><i class="ti-more"></i>Add Product</a></li>
+                    <li class="{{ $route == 'add-product' ? 'active' : '' }}"><a href="{{ route('add-product') }}"><i
+                                class="ti-more"></i>Add Product</a></li>
 
                     <li class="{{ $route == 'manage-product' ? 'active' : '' }}"><a
                             href="{{ route('manage-product') }}"><i class="ti-more"></i>Manage Product</a></li>
@@ -96,11 +96,11 @@ $route = Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ $route == 'slider-add' ? 'active' : '' }}"><a
-                            href="{{ route('slider-add') }}"><i class="ti-more"></i>Add Slider</a></li>
+                    <li class="{{ $route == 'slider-add' ? 'active' : '' }}"><a href="{{ route('slider-add') }}"><i
+                                class="ti-more"></i>Add Slider</a></li>
 
-                    <li class="{{ $route == 'all.slider' ? 'active' : '' }}"><a
-                            href="{{ route('all.slider') }}"><i class="ti-more"></i>Manage Slider</a></li>
+                    <li class="{{ $route == 'all.slider' ? 'active' : '' }}"><a href="{{ route('all.slider') }}"><i
+                                class="ti-more"></i>Manage Slider</a></li>
 
 
                 </ul>
@@ -121,6 +121,10 @@ $route = Route::current()->getName();
                     </li>
                     <li class="{{ $route == 'blog.subcategory.all' ? 'active' : '' }}"><a
                             href="{{ route('blog.subcategory.all') }}"><i class="ti-more"></i>SubCategory</a></li>
+
+                    <li class="{{ $route == 'post.all' ? 'active' : '' }}"><a href="{{ route('post.all') }}"><i
+                                class="ti-more"></i>Post</a>
+                    </li>
 
             </li>
 

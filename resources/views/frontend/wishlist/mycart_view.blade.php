@@ -63,7 +63,7 @@
                                 </tr>
                             </thead><!-- /thead -->
                             <tbody>
-                            <tfoot>
+                                {{-- <tfoot>
                                 <tr>
                                     <td colspan="7">
                                         <div class="shopping-cart-btn">
@@ -71,22 +71,29 @@
                                                 <a href="#" class="btn btn-upper btn-primary outer-left-xs">Continue
                                                     Shopping</a>
                                                 <a href="#"
-                                                    class="btn btn-upper btn-primary pull-right outer-right-xs">Update
-                                                    shopping cart</a>
+                                                    class="btn btn-upper btn-primary pull-right outer-right-xs">PROCCED TO
+                                                    CHEKOUT</a>
                                             </span>
                                         </div><!-- /.shopping-cart-btn -->
                                     </td>
                                 </tr>
-                            </tfoot>
-                            <tr>
-                                <td>
-                                    <div class="cart-checkout-btn pull-right">
-                                        <a href="{{ route('checkout') }}" class="btn btn-primary checkout-btn">PROCCED TO
-                                            CHEKOUT</a>
-                                        {{-- <span class="">Checkout with multiples address!</span> --}}
-                                    </div>
-                                </td>
-                            </tr>
+                            </tfoot> --}}
+                                <tr>
+                                    <td>
+                                        <div class="cart-checkout-btn pull-left">
+                                            <a href="{{ url('/') }}" class="btn btn-upper btn-primary outer-left-xs">Continue
+                                                Shopping</a>
+                                            {{-- <span class="">Checkout with multiples address!</span> --}}
+                                        </div>
+
+                                        <div class="cart-checkout-btn pull-right">
+                                            <a href="{{ route('checkout') }}" class="btn btn-primary checkout-btn">PROCCED
+                                                TO
+                                                CHEKOUT</a>
+                                            {{-- <span class="">Checkout with multiples address!</span> --}}
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody><!-- /tbody -->
                         </table><!-- /table -->
                     </div><!-- /.cart-shopping-total -->

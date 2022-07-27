@@ -27,18 +27,23 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             SubCategorySeeder::class,
             SubSubCategorySeeder::class,
-            // SliderSeeder::class,
+            ProductSeeder::class,
+            SliderSeeder::class,
 
             //Blog
             BlogCategorySeeder::class,
             BlogSubCategorySeeder::class,
+            BlogPostSeeder::class,
+
+            //Website Setting
+            WebsiteSettingSeeder::class,
           
         ]);
 
        // \App\Models\Product::factory(10)->create();
       // Brand::factory()->count(10)->create();
-       Slider::factory()->count(5)->create();
-       Product::factory()->count(10)->create();
+      // Slider::factory()->count(5)->create();
+     //  Product::factory()->count(10)->create();
       // BlogPost::factory()->count(5)->create();
     }
 }

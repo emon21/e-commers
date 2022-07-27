@@ -194,7 +194,7 @@
                     <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
-                                <li class="active dropdown yamm-fw">
+                                <li class="dropdown yamm-fw">
                                     <a href="{{ url('/') }}" data-hover="dropdown" class="dropdown-toggle"
                                         data-toggle="dropdown">Home</a>
                                 </li>
@@ -263,9 +263,8 @@
                                     
                                 @endphp
 
-                                <li class="{{ $route == 'blog' ? 'active' : '' }} dropdown yamm-fw">
-                                    <a href="{{ route('blog') }}" data-hover="dropdown" class="dropdown-toggle"
-                                        data-toggle="dropdown">Blog</a>
+                                <li class="{{ $route == 'blog' ? 'active' : '' }} ">
+                                    <a href="{{ route('blog') }}">Blog</a>
                                 </li>
                                 {{-- <li class="dropdown ">
                                     <a href="{{ url('/blog') }}" class="">Blog</a>

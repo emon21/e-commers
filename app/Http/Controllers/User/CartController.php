@@ -154,7 +154,7 @@ class CartController extends Controller
          'message' => 'Your Order Place Successfully',
          'alert-type' => 'success',
       );
-      return redirect()->route('order-details')->with($notification);
+      return redirect()->route('my.order')->with($notification);
 
 
 
@@ -164,6 +164,8 @@ class CartController extends Controller
     {
       $order = OrderItem::with('order','product')->get();
      // return $order;
-      return view('frontend.order.order_details',compact('order'));
+     // return view('frontend.order.order_details',compact('order'));
+      return view('user.order_details',compact('order','orderitem'));
+
     }
 }

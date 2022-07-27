@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\frontend\IndexController;
 use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\frontend\BlogController AS Blog;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\UserDashboard;
 use App\Http\Controllers\User\WishListController;
@@ -124,6 +125,7 @@ Route::prefix('brand')->group(function(){
 //AdminCategory all Route
 Route::prefix('category')->group(function(){
 
+   //Admin category Route List
    Route::get('/view',[CategoryController::class,'CategoryView'])->name('all.category');
    Route::get('/create',[CategoryController::class,'CategoryCreate'])->name('category.create');
    Route::post('/store',[CategoryController::class,'CategoryStore'])->name('category.store');
@@ -132,7 +134,6 @@ Route::prefix('category')->group(function(){
    Route::get('/delete/{id}',[CategoryController::class,'CategoryDelete'])->name('category.delete');
 
    //Admin SUb Category Route List
-
    Route::get('/sub/view',[SubCategoryController::class,'SubCategoryView'])->name('all.subcategory');
    Route::get('/sub/create',[SubCategoryController::class,'SubCategoryCreate'])->name('subcategory.create');
    Route::post('/sub/store',[SubCategoryController::class,'SubCategoryStore'])->name('subcategory.store');
@@ -141,26 +142,24 @@ Route::prefix('category')->group(function(){
    Route::get('/sub/delete/{id}',[SubCategoryController::class,'SubCategoryDelete'])->name('subcategory.delete');
 
 
-//Admin Sub SUb Category Route List
+   //Admin Sub SUb Category Route List
+   Route::get('/sub/sub/view',[SubCategoryController::class,'SubSubCategoryView'])->name('all.subsubcategory');
+   Route::get('/sub/sub/create',[SubCategoryController::class,'SubSubCategoryCreate'])->name('sub.subsubcategory.create');
 
-Route::get('/sub/sub/view',[SubCategoryController::class,'SubSubCategoryView'])->name('all.subsubcategory');
+   //subcategory ajax url
+   Route::get('/subcategory/{category_id}',[SubCategoryController::class,'GetSubCategory']);
 
-Route::get('/sub/sub/create',[SubCategoryController::class,'SubSubCategoryCreate'])->name('sub.subsubcategory.create');
+   //Sub subcategory ajax url
+   Route::get('/sub-subcategory/ajax/{subcategory_id}',[SubCategoryController::class,'GetSubSubCategory']);
 
-//subcategory ajax url
-Route::get('/subcategory/{category_id}',[SubCategoryController::class,'GetSubCategory']);
+   Route::post('/sub/sub/store',[SubCategoryController::class,'SubSubCategoryStore'])->name('subsubsubcategory.store');
 
-//Sub subcategory ajax url
-Route::get('/sub-subcategory/ajax/{subcategory_id}',[SubCategoryController::class,'GetSubSubCategory']);
+   Route::get('/sub/sub/edit/{editID}',[SubCategoryController::class,'SubSubCategoryEdit'])->name('subsubcategory.edit');
 
-Route::post('/sub/sub/store',[SubCategoryController::class,'SubSubCategoryStore'])->name('subsubsubcategory.store');
+   Route::post('/sub/sub/update',[SubCategoryController::class,'SubSubCategoryUpdate'])->name('subsubcategory.update');
 
-Route::get('/sub/sub/edit/{editID}',[SubCategoryController::class,'SubSubCategoryEdit'])->name('subsubcategory.edit');
-
-Route::post('/sub/sub/update',[SubCategoryController::class,'SubSubCategoryUpdate'])->name('subsubcategory.update');
-
-//deletet data
-Route::get('/sub/sub/delete/{deleteID}',[SubCategoryController::class,'SubSubCategoryDelete'])->name('subsubcategory.delete');
+   //deletet data
+   Route::get('/sub/sub/delete/{deleteID}',[SubCategoryController::class,'SubSubCategoryDelete'])->name('subsubcategory.delete');
 
 });
 
@@ -288,6 +287,9 @@ Route::group(['prefix' => 'user',  'middleware' => 'auth'], function()
    //  Route::get('/wishlist', [WishListController::class, 'wishlist'])->name('wishlist');
 });
 
+//frontend Blog
+Route::get('/blog',[Blog::class,'Blog'])->name('blog');
+Route::get('/blog/details/{blog_id}',[Blog::class,'BlogDetails']);
 
 
 //brand all route
@@ -304,8 +306,13 @@ Route::prefix('blog')->group(function(){
    Route::get('/subcategory/add',[BlogController::class,'SubCategoryAdd'])->name('blog.subcategory.add');
    Route::post('/subcategory/store',[BlogController::class,'SubCategoryStore'])->name('blog.subcategory.store');
 
+   //subcategory ajax url
+   Route::get('/subcategory/{category_id}',[BlogController::class,'GetSubCategory']);
+
     //Post route List
     Route::get('/view',[BlogController::class,'PostView'])->name('post.all');
+    Route::get('/create',[BlogController::class,'PostCreate'])->name('post.create');
+    Route::post('/store',[BlogController::class,'PostStore'])->name('post-store');
 
    //Tag route List
    Route::get('/tag/view',[BlogController::class,'TagView'])->name('tag.all');

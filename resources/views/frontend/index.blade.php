@@ -1074,10 +1074,13 @@
                                         <!-- /.blog-post-image -->
 
                                         <div class="blog-post-info text-left">
-                                            <h3 class="name"><a href="#">{{ $post->blog_title }}</a></h3>
+                                            <h3 class="name"><a
+                                                    href="{{ url('blog/details', $post->id) }}">{{ $post->blog_title }}</a>
+                                            </h3>
                                             <span class="info">By Jone Doe &nbsp;|&nbsp; 21 March 2016 </span>
                                             <p class="text">{!! $post->blog_description !!}</p>
-                                            <a href="#" class="lnk btn btn-primary">Read more</a>
+                                            <a href="{{ url('blog/details', $post->id) }}"
+                                                class="lnk btn btn-primary">Read more blog</a>
                                         </div>
                                         <!-- /.blog-post-info -->
 

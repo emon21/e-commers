@@ -12,7 +12,7 @@
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title">Product List</h3>
-                            <a href="{{ route('add-product') }}" class="btn btn-success float-right">Create Product</a>
+                            <a href="{{ route('post.create') }}" class="btn btn-success float-right">Create Post</a>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -44,7 +44,7 @@
                                                     <span><i class="{{ $post->category_icon }}"></i></span>
                                                 </td>
                                                 <td>{{ $post->blog_title }}</td>
-                                                <td>{{ $post->blog_description }}</td>
+                                                <td>{!! $post->blog_description !!}</td>
 
 
 
@@ -85,15 +85,15 @@
                                         @endforeach
                                     </tbody>
                                     <tfoot>
-                                       <tr>
-                                          <th>Sl No</th>
-                                          <th>Image</th>
-                                          <th>Category</th>
-                                          <th>Post Name</th>
-                                          <th>Blog Description</th>
-                                          <th>status</th>
-                                          <th>Action</th>
-                                      </tr>
+                                        <tr>
+                                            <th>Sl No</th>
+                                            <th>Image</th>
+                                            <th>Category</th>
+                                            <th>Post Name</th>
+                                            <th>Blog Description</th>
+                                            <th>status</th>
+                                            <th>Action</th>
+                                        </tr>
                                     </tfoot>
                                 </table>
                             </div>

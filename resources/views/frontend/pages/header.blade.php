@@ -257,6 +257,19 @@
                                     </li>
                                 @endforeach
 
+                                @php
+                                    $prefix = Request::route()->getPrefix();
+                                    $route = Route::current()->getName();
+                                    
+                                @endphp
+
+                                <li class="{{ $route == 'blog' ? 'active' : '' }} dropdown yamm-fw">
+                                    <a href="{{ route('blog') }}" data-hover="dropdown" class="dropdown-toggle"
+                                        data-toggle="dropdown">Blog</a>
+                                </li>
+                                {{-- <li class="dropdown ">
+                                    <a href="{{ url('/blog') }}" class="">Blog</a>
+                                </li> --}}
                                 <li class="dropdown  navbar-right special-menu"> <a href="#">Todays offer</a>
                                 </li>
                             </ul>

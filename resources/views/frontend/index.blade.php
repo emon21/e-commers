@@ -93,6 +93,7 @@
 
                 <!-- ================================== SECTION – HERO : END ================================== -->
 
+
                 <!-- ================================== INFO BOXES ================================== -->
                 <div class="info-boxes wow fadeInUp">
                     <div class="info-boxes-inner">
@@ -141,6 +142,104 @@
                 <!-- /.info-boxes -->
                 <!-- ================================== INFO BOXES : END ================================== -->
 
+                {{-- <h2 class="text-center">Shop with Categories</h2> --}}
+
+                {{-- <div class="owl-carousel owl-theme owl-loaded category">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage">
+                            <div class="owl-item">
+                                <img src="{{ asset('upload/product/p1.jpg') }}" alt="">
+                            </div>
+                            <div class="owl-item">
+                                <img src="{{ asset('upload/product/p2.jpg') }}" alt="">
+                            </div>
+                            <div class="owl-item">
+                                <img src="{{ asset('upload/product/p3.jpg') }}" alt="">
+                            </div>
+                            <div class="owl-item">
+                                <img src="{{ asset('upload/product/p4.jpg') }}" alt="">
+                            </div>
+                            <div class="owl-item">
+                                <img src="{{ asset('upload/product/p5.jpg') }}" alt="">
+                            </div>
+                            <div class="owl-item">
+                                <img src="{{ asset('upload/product/p6.jpg') }}" alt="">
+                            </div>
+                            <div class="owl-item">
+                                <img src="{{ asset('upload/product/p7.jpg') }}" alt="">
+                            </div>
+                            <div class="owl-item">
+                                <img src="{{ asset('upload/product/p8.jpg') }}" alt="">
+                            </div>
+                            <div class="owl-item">
+                                <img src="{{ asset('upload/product/p9.jpg') }}" alt="">
+                            </div>
+                            <div class="owl-item">
+                                <img src="{{ asset('upload/product/p10.jpg') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="owl-nav">
+                        <div class="owl-prev">prev</div>
+                        <div class="owl-next">next</div>
+                    </div>
+                    <div class="owl-dots">
+                        <div class="owl-dot active"><span></span></div>
+                        <div class="owl-dot"><span></span></div>
+                        <div class="owl-dot"><span></span></div>
+                    </div>
+                </div> --}}
+
+                {{-- <div class="owl-carousel owl-theme category">
+                    <div class="item">
+                        <img src="{{ asset('upload/product/p1.jpg') }}" alt="">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('upload/product/p2.jpg') }}" alt="">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('upload/product/p3.jpg') }}" alt="">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('upload/product/p4.jpg') }}" alt="">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('upload/product/p5.jpg') }}" alt="">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('upload/product/p6.jpg') }}" alt="">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('upload/product/p7.jpg') }}" alt="">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('upload/product/p8.jpg') }}" alt="">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('upload/product/p9.jpg') }}" alt="">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('upload/product/p10.jpg') }}" alt="">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('upload/product/p11.jpg') }}" alt="">
+
+                    </div>
+                    <div class="item">
+                        <img src="{{ asset('upload/product/p12.jpg') }}" alt="">
+
+                    </div>
+                </div> --}}
 
                 <!-- ================================== SCROLL TABS ================================== -->
                 <div id="product-tabs-slider" class="scroll-tabs outer-top-vs wow fadeInUp">
@@ -415,6 +514,9 @@
                 <!-- /.wide-banners -->
 
                 <!-- ================================== WIDE PRODUCTS : END ================================== -->
+                NEW PRODUCTS
+
+
 
                 <!-- ================================== FEATURED PRODUCTS ================================== -->
                 <section class="section featured-product wow fadeInUp">

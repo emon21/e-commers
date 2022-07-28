@@ -86,7 +86,17 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
 
    Route::get('admin/password/change',[AdminProfileController::class,'AdminPasswordChange'])->name('admin.password.change');
    Route::post('admin/password/update',[AdminProfileController::class,'AdminPasswordUpdate'])->name('admin.password.update');
+
+   //user List
+   Route::get('user-list',[AdminProfileController::class,'UserList'])->name('user-list');
+
+   
+  
 });
+
+//user Status
+Route::get('user/active/{id}',[AdminProfileController::class,'UserActive'])->name('user.active');
+Route::get('user/inactive/{id}',[AdminProfileController::class,'UserInactive'])->name('user.inactive');
 
 
 // ===================================  User Route  Start ===================================

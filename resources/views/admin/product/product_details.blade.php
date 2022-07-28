@@ -157,9 +157,9 @@
                                             @php
                                                 $values = explode(',', $products->product_size_en);
                                             @endphp
-                                            @if (in_array("$products->product_size_en", $values))
+                                            {{--  @if (in_array("$products->product_size_en", $values))
                                                 {{ $products->product_size_en }}
-                                            @endif
+                                            @endif  --}}
 
                                             @foreach ($values as $skill)
                                                 <span class="badge badge-dark mb-2">{{ $skill }}</span>

@@ -86,6 +86,7 @@ class CartController extends Controller
       // $invoice_no = $info.'-'.rand(100000,999999);
      // return $invoice_no;
        $cartTotal = Cart::total();
+      // return $cartTotal;
        $order_id = Order::insertGetId([
          'user_id' =>Auth::id(),
          'name' =>$request->name,
@@ -118,16 +119,16 @@ class CartController extends Controller
       ]);
 
       //invoice send by mail
-      $invoice = Order::findOrFail($order_id);
+     // $invoice = Order::findOrFail($order_id);
      // return $invoice;
-      $data = [
-         'invoice_no' => $invoice->invoice_no,
-         'amount' =>$invoice->amount,
-         'name' => $invoice->name,
-          'email' => $invoice->email,
-      ];
+      // $data = [
+      //    'invoice_no' => $invoice->invoice_no,
+      //    'amount' =>$invoice->amount,
+      //    'name' => $invoice->name,
+      //     'email' => $invoice->email,
+      // ];
 
-      Mail::to($request->email)->send(new OrderMail($data));
+      //Mail::to($request->email)->send(new OrderMail($data));
    
 
      $carts = Cart::content();

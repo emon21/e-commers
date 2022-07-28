@@ -57,7 +57,7 @@
     <table width="100%" style="background: #F7F7F7; padding:0 20px 0 20px;">
         <tr>
             <td valign="top">
-                <!-- {{-- <img src="" alt="" width="150"/> --}} -->
+                {{-- <img src="{{ asset('frontend') }}/assets/images/logo.png" alt="logo"> --}}
                 <h2 style="color: green; font-size: 26px;"><strong>EasyShop</strong></h2>
             </td>
             <td align="right">
@@ -156,7 +156,7 @@
         <p>Thanks For Buying Products..!!</p>
     </div>
     <div class="authority float-right mt-5">
-        <h4>Emon Raj</h4>
+
         <p>-----------------------------------</p>
         <h5>Authority Signature:</h5>
     </div>

@@ -41,6 +41,7 @@
 
                                 </tbody><!-- /tbody -->
 
+
                             </table><!-- /table -->
                         </div>
                     </div><!-- /.shopping-cart-table -->
@@ -54,10 +55,11 @@
                                 <tr>
                                     <th>
                                         <div class="cart-sub-total">
-                                            Subtotal<span class="inner-left-md">${{ Cart::total() }}</span>
+                                            {{-- Subtotal :<span class="inner-left-md">${{ Cart::total() }}</span> --}}
+                                            Subtotal : <span class='price' id="CartSubTotal"></span>
                                         </div>
                                         <div class="cart-grand-total">
-                                            Grand Total<span class="inner-left-md">${{ Cart::total() }}</span>
+                                            Grand Total : <span class='price' id="CartSubTotal"></span>
                                         </div>
                                     </th>
                                 </tr>
@@ -81,7 +83,8 @@
                                 <tr>
                                     <td>
                                         <div class="cart-checkout-btn pull-left">
-                                            <a href="{{ url('/') }}" class="btn btn-upper btn-primary outer-left-xs">Continue
+                                            <a href="{{ url('/') }}"
+                                                class="btn btn-upper btn-primary outer-left-xs">Continue
                                                 Shopping</a>
                                             {{-- <span class="">Checkout with multiples address!</span> --}}
                                         </div>

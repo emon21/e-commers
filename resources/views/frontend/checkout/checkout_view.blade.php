@@ -141,14 +141,14 @@
                                                 </li>
                                             @endforeach
                                             <hr>
-                                            <li>
+                                            {{-- <li>
 
                                                 <strong>Sub Total :</strong>
                                                 ${{ $cartTotal }}
                                                 <hr>
                                                 <strong>Grand Total :</strong>
                                                 ${{ $cartTotal }}
-                                            </li>
+                                            </li> --}}
 
 
 

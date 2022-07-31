@@ -120,40 +120,39 @@
 
             </div>
             <!-- end row -->
-
-            <div class="col-sm-12">
-                <table class="table table-striped">
-                    <thead>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Product Code</th>
+                        <th>Color</th>
+                        <th>Size</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($orderitem as $item)
                         <tr>
-                            <th>Image</th>
-                            <th>Product Name</th>
-                            <th>Product Code</th>
-                            <th>Color</th>
-                            <th>Size</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
+                            <td><img src="{{ asset($item->product->product_thambnil) }}" height="50px;" width="50px;">
+                            </td>
+                            <td>{{ $item->product->product_name_en }}</td>
+                            <td>{{ $item->product->product_code }}</td>
+                            <td>{{ $item->color }}</td>
+                            <td>{{ $item->size }}</td>
+                            <td>{{ $item->qty }}</td>
+                            <td>${{ $item->price }} ( $ {{ $item->price * $item->qty }} ) </td>
+
+
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($orderitem as $item)
-                            <tr>
-                                <td><img src="{{ asset($item->product->product_thambnil) }}" height="50px;" width="50px;">
-                                </td>
-                                <td>{{ $item->product->product_name_en }}</td>
-                                <td>{{ $item->product->product_code }}</td>
-                                <td>{{ $item->color }}</td>
-                                <td>{{ $item->size }}</td>
-                                <td>{{ $item->qty }}</td>
-                                <td>${{ $item->price }} ( $ {{ $item->price * $item->qty }} ) </td>
+                    @endforeach
 
+                </tbody>
+            </table>
 
-                            </tr>
-                        @endforeach
-
-                    </tbody>
-                </table>
-            </div>
         </div>
+
         <!-- end container -->
     </div>
     <!-- end body-content -->

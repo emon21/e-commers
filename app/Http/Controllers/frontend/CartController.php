@@ -75,6 +75,7 @@ class CartController extends Controller
 
    } // end mehtod 
 
+   //product wishlist into user
    public function AddToWishlist(Request $request, $product_id){
 
       if (Auth::check()) {

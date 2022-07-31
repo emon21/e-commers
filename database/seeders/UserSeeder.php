@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
         $user = new User();
         $user->name = "User";
         $user->email = "user@mail.com";
-        $user->profile_photo = "backend/user/default.png";
+        //$user->profile_photo = "backend/user/default.png";
         $user->password = bcrypt('12345678');
         $user->role_as = 'user';
         $user->phone = '01811287256';
@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
         $user = new User();
         $user->name = "Admin";
         $user->email = "admin@mail.com";
-        $user->profile_photo = "backend/user/default.png";
+       // $user->profile_photo = "backend/user/default.png";
         $user->password = bcrypt('12345678');
         $user->role_as = 'admin';
         $user->phone = '01711287256';

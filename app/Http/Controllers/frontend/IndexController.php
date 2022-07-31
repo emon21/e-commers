@@ -88,15 +88,18 @@ class IndexController extends Controller
          //file upload
          $file = $request->file('profile_photo');
          @unlink(public_path('upload/user_images/'.$user->profile_photo));
+
+         //upload user image
          $filename = time() . '.' .$file->getClientOriginalextension();
          $file->move(public_path('upload/user_images/'), $filename); 
-         $user['profile_photo'] = $filename;
+         $user->profile_photo = $filename;
       }
       $user->save();
       $notification = array(
          'message' => 'User Profile Update Successfully','Admin',
          'alert-type' => 'success'
       );
+      
      // Toastr::success('Admin Profile Changed Successfully', 'Admin', ["positionClass" => "toast-top-right","progressBar" => true,]);
 
       return redirect()->route('user.dashboard')->with($notification);

@@ -25,7 +25,7 @@
                     <div class="widget-user-image">
 
                         <img class="rounded-circle"
-                            src="{{ !empty($adminUser->profile_photo) ? url('upload/admin_images/' . $adminUser->profile_photo) : url('upload/no_image.jpg') }}"
+                            src="{{ !empty($adminUser->profile_photo) ? url('upload/admin_images/' . $adminUser->profile_photo) : url('backend/user/user.png') }}"
                             alt="User Avatar">
                     </div>
                     <div class="box-footer">
@@ -63,5 +63,4 @@
         </section>
         <!-- /.content -->
     </div>
-
 @endsection

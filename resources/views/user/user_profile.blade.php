@@ -64,12 +64,17 @@
                                                 padding: 10px;
                                                 text-align: center;">Profile
                                                     Photo</label>
+
                                                 <img id="showImage" class="rounded"
-                                                    src="{{ !empty($user->profile_photo) ? url('upload/user_images/' . $user->profile_photo) : url('upload/no_image.jpg') }}"
+                                                    src="{{ !empty($currentUser->profile_photo) ? url('upload/user_images/', $currentUser->profile_photo) : url('upload/user_images/default.png') }}"
                                                     alt="User Avatar"
                                                     style="width: 280px;
                                                     height: 282px;
                                                     margin-top: 4px;">
+
+                                                {{-- <img class="rounded-circle card-img-top" style="border-radius: 50%;"
+                                                    src="{{ !empty($user->profile_photo) ? 'upload/user_images/' . $user->profile_photo : url('upload/user_images/default.png') }}"
+                                                    alt="User Avatar" width="100%"> --}}
                                             </div>
                                         </div>
                                     </div>

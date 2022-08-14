@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('role_as')->default('user')->comment('user|admin');
             $table->string('profile_photo')->nullable();
+            $table->string('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

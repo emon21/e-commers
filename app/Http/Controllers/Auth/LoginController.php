@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 class LoginController extends Controller
 {
     /*
@@ -42,6 +43,13 @@ class LoginController extends Controller
             return redirect('/');
          }
     }
+
+
+   //  protected function credentials(Request $request)
+   //  {
+   //     // return $request->only($this->username(), 'password');
+   //      return  ['email'=>$request->{$this->username()},'password'=>$request->password,'status'=>'1'];
+   //  }
 
     /**
      * Create a new controller instance.

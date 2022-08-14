@@ -13,8 +13,7 @@
                 <div class="col-sm-10">
                     <br>
                     <div class="sign-in-page mt-4">
-                        <h3 class="text-center"><span
-                                class="text-danger">Hi..</span><strong>{{ Auth::user()->name }}</strong>
+                        <h3 class="text-center"><span class="text-danger">Hi..</span><strong>{{ Auth::user()->name }}</strong>
                             Wellcome TO
                             Online
                             Shop</h3>

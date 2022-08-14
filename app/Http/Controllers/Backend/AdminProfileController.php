@@ -103,4 +103,34 @@ class AdminProfileController extends Controller
       }
       
     }
+
+
+    public function UserList()
+    {
+      $users = User::latest()->get();
+      return view('admin.user.user_list',compact('users'));
+    }
+
+    public function UserActive($id)
+    {
+      User::findOrFail($id)->update(['status' => 1]);
+      $notification = array(
+         'message' => 'User Status Active Updated Successfully',
+         'alert-type' => 'success',
+      );
+   
+      return redirect()->route('user-list')->with($notification);
+      
+    }
+
+    public function UserInactive($id)
+    {
+      User::findOrFail($id)->update(['status' => 0]);
+      $notification = array(
+         'message' => 'User Status Inactive Updated Successfully',
+         'alert-type' => 'success',
+      );
+   
+      return redirect()->route('user-list')->with($notification);
+    }
 }

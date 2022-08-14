@@ -39,8 +39,12 @@
                                     <tbody>
                                         @foreach ($subsubcategory as $item)
                                             <tr>
-                                                <td> {{ $item['category']['category_name_en'] }} </td>
-                                                <td>{{ $item['subcategory']['subcategory_name_en'] }}</td>
+                                                <td><span
+                                                        class="badge badge-success">{{ $item['category']['category_name_en'] }}</span>
+                                                </td>
+                                                <td><span
+                                                        class="badge badge-info p-2">{{ $item['subcategory']['subcategory_name_en'] }}</span>
+                                                </td>
                                                 <td>{{ $item->sub_subcategory_name_en }}</td>
                                                 <td width="30%">
                                                     <a href="{{ route('subsubcategory.edit', $item->id) }}"

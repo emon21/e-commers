@@ -1,0 +1,36 @@
+.modal-content {
+   width: 800px;
+   right: 100px;
+   -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+   box-shadow: 0 5px 15pxrgba(0,0,0,.5);
+}
+
+button.close {
+   -webkit-appearance: none;
+   padding: 0;
+   cursor: pointer;
+   background: 0 0;
+   border: 0;
+   /* background: blue; */
+   margin-top: -24px;
+   font-size: 30px;
+}
+
+.modal-header .close {
+   margin-top: -24px;
+   font-size: 30px;
+}
+
+.shopping-cart .cart-shopping-total table thead tr th .cart-sub-total {
+   color: #555;
+   margin-bottom: 7px;
+   margin-right: 40px;
+   margin-top: -20px;
+   /* border-bottom: 1px solid red; */
+   /* width: 100%; */
+}
+
+.shopping-cart .cart-shopping-total table thead tr th .cart-grand-total {
+   color: #84b943;
+   margin-right: 40px;
+}

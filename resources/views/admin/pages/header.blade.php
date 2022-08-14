@@ -123,7 +123,7 @@
                         {{-- "@if ($post->image) {{ asset($post->image) }} @else {{ asset('backend/blog/default.png') }} @endif" --}}
                         {{-- {{ !empty($adminData->profile_photo) ? url('upload/admin_images/' . $adminData->profile_photo) : url('upload/no_image.jpg') }} --}}
                         <img class="rounded-circle"
-                            src="{{ !empty($adminData->profile_photo) ? url('upload/admin_images/' . $adminData->profile_photo) : url('upload/no_image.jpg') }}"
+                            src="{{ !empty($adminData->profile_photo) ? url('upload/admin_images/' . $adminData->profile_photo) : url('backend/user/user.png') }}"
                             alt="User Avatar">
                     </a>
                     <ul class="dropdown-menu animated flipInX">
